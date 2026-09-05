@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Repositório científico complementar da dissertação sobre predição da variação dimensional de concretos com macrofibras e aditivos compensadores de retração." name="description"/><title>Experimento 05 · Sistema Preditivo de Variação Dimensional</title><link href="../assets/css/style.css" rel="stylesheet"/></head><body><header class="top"><div class="wrap brand"><div><strong>Sistema Preditivo de Variação Dimensional</strong><span>Repositório científico complementar</span></div><button aria-label="Abrir menu" class="nav-toggle">☰</button></div><nav class="wrap nav"><a href="../index.html">Início</a><a href="../metodologia.html">Pesquisa</a><a href="../dados.html">Dados</a><a href="../experimentos/index.html">Experimentos</a><a href="../resultados.html">Resultados</a><a href="../prototipo.html">Protótipo</a><a href="../rastreabilidade.html">Rastreabilidade</a><a href="../downloads.html">Downloads</a></nav></header><main class="wrap"><div class="eyebrow">Experimento 05</div><h1>Comparação das formulações da variável-alvo</h1><p class="lead">Comparar ε(t) com sinal, magnitude absoluta e classe dimensional.</p><div class="grid"><div class="card span-6"><h3>Resultado principal</h3><p>A classificação dimensional atingiu F1 macro 0,925, mas não preserva magnitude; a magnitude absoluta perde a distinção entre expansão e retração.</p></div><div class="card span-6"><h3>Decisão metodológica</h3><p>Manter ε(t) com sinal como resposta principal; usar classe e módulo apenas como análises complementares.</p></div></div><h2>Evidência tabular</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>MAE</th><th>RMSE</th><th>R2</th><th>acuracia_sinal</th><th>formulacao</th></tr></thead><tbody><tr><td>63.16059650256423</td><td>96.15933292656446</td><td>0.7402420057495308</td><td>0.7940566689702834</td><td>variacao_com_sinal</td></tr><tr><td>59.89952004216233</td><td>95.39828602103117</td><td>0.5848043396976735</td><td>0.8389771941948859</td><td>magnitude_absoluta</td></tr></tbody></table></div><h2>Rastreabilidade</h2><p>Este experimento sustenta diretamente a seção <strong>4.5</strong> dos resultados parciais da dissertação.</p><div class="btns"><a class="btn secondary" href="../downloads/src/experimento_05_formulacoes_alvo/experimento_05.py">Ver script</a><a class="btn secondary" href="../downloads/resultados/experimento_05_formulacoes_alvo/metricas_regressao_formulacoes.csv">Baixar tabela principal</a></div><section class="report-section" id="relatorio-detalhado">
+<div class="report-head">
+<div><div class="eyebrow">Resultados documentados</div><h2>Relatório detalhado do experimento</h2>
+<p class="lead">Conteúdo incorporado diretamente do relatório Markdown original do Experimento 05, preservando procedimentos, tabelas, resultados, interpretação e conclusão.</p></div>
+<div class="btns"><a class="btn secondary" href="../downloads/relatorios/experimentos/RELATORIO_experimento_05_formulacoes_alvo.md">Baixar relatório .md</a></div>
+</div>
+<div class="report-content">
+<h2 id="rel-1-caracteriza-o-e-finalidade">1. Caracterização e finalidade</h2>
+<p>Este experimento avalia diferentes formas de representar a variável de resposta. A finalidade é verificar as consequências metodológicas de predizer a variação dimensional com sinal, a magnitude absoluta da deformação e a classe dimensional.</p>
+<p>A comparação é importante porque a variável com sinal preserva a distinção física entre retração e expansão, enquanto o módulo absoluto informa apenas a intensidade da deformação.</p>
+<h2 id="rel-2-formula-es-avaliadas">2. Formulações avaliadas</h2>
+<p>Foram consideradas três formulações:</p>
+<ol>
+<li><code>epsilon_t</code>: variação dimensional com sinal;</li>
+<li><code>abs(epsilon_t)</code>: magnitude absoluta da deformação;</li>
+<li>classe dimensional: retração, expansão ou estabilidade.</li>
+</ol>
+<h2 id="rel-3-procedimento-executado">3. Procedimento executado</h2>
+<p>Foram treinados modelos de regressão para as duas formulações numéricas e um modelo de classificação para a classe dimensional. As saídas foram comparadas por métricas adequadas a cada tipo de problema.</p>
+<h2 id="rel-4-tabelas-geradas">4. Tabelas geradas</h2>
+<h3 id="rel-tabela-1-m-tricas-de-regress-o-para-as-formula-es-num-ricas">Tabela 1 — Métricas de regressão para as formulações numéricas</h3>
+<p>A Tabela 1 compara a predição da variação dimensional com sinal e da magnitude absoluta. A comparação ajuda a demonstrar que a formulação com sinal é conceitualmente mais adequada ao objetivo principal, enquanto a magnitude absoluta pode ser usada como análise complementar de intensidade.</p>
+<p>Arquivo de origem: <code>experimento_05_formulacoes_alvo/resultados/metricas_regressao_formulacoes.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">MAE</th>
+<th style="text-align:right">RMSE</th>
+<th style="text-align:right">R2</th>
+<th style="text-align:right">acuracia_sinal</th>
+<th style="text-align:left">formulacao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">63.161</td>
+<td style="text-align:right">96.159</td>
+<td style="text-align:right">0.74</td>
+<td style="text-align:right">0.794</td>
+<td style="text-align:left">variacao_com_sinal</td>
+</tr>
+<tr>
+<td style="text-align:right">59.9</td>
+<td style="text-align:right">95.398</td>
+<td style="text-align:right">0.585</td>
+<td style="text-align:right">0.839</td>
+<td style="text-align:left">magnitude_absoluta</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-2-m-tricas-da-classifica-o-dimensional">Tabela 2 — Métricas da classificação dimensional</h3>
+<p>A Tabela 2 apresenta accuracy, precision macro, recall macro e F1 macro para a classificação entre retração, expansão e estabilidade. Essas métricas avaliam o desempenho na identificação do comportamento dimensional, e não na magnitude numérica da deformação.</p>
+<p>Arquivo de origem: <code>experimento_05_formulacoes_alvo/resultados/metricas_classe_dimensional.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">formulacao</th>
+<th style="text-align:right">accuracy</th>
+<th style="text-align:right">precision_macro</th>
+<th style="text-align:right">recall_macro</th>
+<th style="text-align:right">f1_macro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">classe_dimensional</td>
+<td style="text-align:right">0.924</td>
+<td style="text-align:right">0.929</td>
+<td style="text-align:right">0.921</td>
+<td style="text-align:right">0.925</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-3-matriz-de-confus-o-da-classe-dimensional">Tabela 3 — Matriz de confusão da classe dimensional</h3>
+<p>A Tabela 3 mostra a matriz de confusão da classificação dimensional. As linhas correspondem às classes reais e as colunas às classes previstas. A diagonal principal representa acertos; valores fora da diagonal indicam confusões entre retração, expansão e estabilidade.</p>
+<p>Arquivo de origem: <code>experimento_05_formulacoes_alvo/resultados/matriz_confusao_classe_dimensional.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Unnamed: 0</th>
+<th style="text-align:right">estabilidade</th>
+<th style="text-align:right">expansao</th>
+<th style="text-align:right">retracao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td style="text-align:left">expansao</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">356</td>
+<td style="text-align:right">47</td>
+</tr>
+<tr>
+<td style="text-align:left">retracao</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">47</td>
+<td style="text-align:right">774</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-4-predi-es-da-varia-o-com-sinal">Tabela 4 — Predições da variação com sinal</h3>
+<p>A Tabela 4 contém as predições da formulação principal, isto é, <code>epsilon_t</code> com sinal. Ela permite verificar se o modelo preserva o sentido físico da deformação.</p>
+<p>Arquivo de origem: <code>experimento_05_formulacoes_alvo/resultados/predicoes_variacao_com_sinal.csv</code></p>
+<p>A tabela completa possui <strong>1447 registros</strong> e <strong>4 colunas</strong>. Para manter a leitura do relatório viável, apresenta-se abaixo uma visualização parcial, mantendo o arquivo CSV completo na pasta de resultados.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">amostra_id</th>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">real</th>
+<th style="text-align:right">previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">32.305</td>
+</tr>
+<tr>
+<td style="text-align:right">138</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-88.521</td>
+</tr>
+<tr>
+<td style="text-align:right">41</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">38.203</td>
+</tr>
+<tr>
+<td style="text-align:right">139</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">88.916</td>
+</tr>
+<tr>
+<td style="text-align:right">140</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-91.485</td>
+</tr>
+<tr>
+<td style="text-align:right">40</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">88.916</td>
+</tr>
+<tr>
+<td style="text-align:right">141</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">70.388</td>
+</tr>
+<tr>
+<td style="text-align:right">137</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">28.276</td>
+</tr>
+<tr>
+<td style="text-align:right">39</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-129.466</td>
+</tr>
+<tr>
+<td style="text-align:right">143</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">43.646</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">66.696</td>
+</tr>
+<tr>
+<td style="text-align:right">144</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-103.843</td>
+</tr>
+<tr>
+<td style="text-align:right">145</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">106.164</td>
+</tr>
+<tr>
+<td style="text-align:right">37</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-74.512</td>
+</tr>
+<tr>
+<td style="text-align:right">146</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-60.599</td>
+</tr>
+<tr>
+<td style="text-align:right">142</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-108.743</td>
+</tr>
+<tr>
+<td style="text-align:right">42</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-77.575</td>
+</tr>
+<tr>
+<td style="text-align:right">136</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-110.012</td>
+</tr>
+<tr>
+<td style="text-align:right">43</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">48.468</td>
+</tr>
+<tr>
+<td style="text-align:right">126</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-53.399</td>
+</tr>
+<tr>
+<td style="text-align:right">48</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-79.949</td>
+</tr>
+<tr>
+<td style="text-align:right">127</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">18.381</td>
+</tr>
+<tr>
+<td style="text-align:right">128</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-108.644</td>
+</tr>
+<tr>
+<td style="text-align:right">47</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">60.28</td>
+</tr>
+<tr>
+<td style="text-align:right">129</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">129.691</td>
+</tr>
+<tr>
+<td style="text-align:right">106</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-430</td>
+<td style="text-align:right">-398.106</td>
+</tr>
+<tr>
+<td style="text-align:right">59</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-460</td>
+<td style="text-align:right">-434.547</td>
+</tr>
+<tr>
+<td style="text-align:right">168</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-390</td>
+<td style="text-align:right">-451.99</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-590</td>
+<td style="text-align:right">-444.076</td>
+</tr>
+<tr>
+<td style="text-align:right">107</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-360</td>
+<td style="text-align:right">-341.469</td>
+</tr>
+<tr>
+<td style="text-align:right">58</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-320</td>
+<td style="text-align:right">-373.751</td>
+</tr>
+<tr>
+<td style="text-align:right">167</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-260</td>
+<td style="text-align:right">-261.005</td>
+</tr>
+<tr>
+<td style="text-align:right">108</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-290</td>
+<td style="text-align:right">-248.764</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">-281.263</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">-288.252</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Observação: o CSV completo correspondente permanece disponível na pasta de resultados do experimento.</p>
+</blockquote>
+<h3 id="rel-tabela-5-predi-es-da-magnitude-absoluta">Tabela 5 — Predições da magnitude absoluta</h3>
+<p>A Tabela 5 contém as predições da magnitude absoluta. Essa formulação não distingue retração de expansão; por isso deve ser interpretada como medida complementar da intensidade da deformação.</p>
+<p>Arquivo de origem: <code>experimento_05_formulacoes_alvo/resultados/predicoes_magnitude_absoluta.csv</code></p>
+<p>A tabela completa possui <strong>1447 registros</strong> e <strong>4 colunas</strong>. Para manter a leitura do relatório viável, apresenta-se abaixo uma visualização parcial, mantendo o arquivo CSV completo na pasta de resultados.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">amostra_id</th>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">real</th>
+<th style="text-align:right">previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-21.704</td>
+</tr>
+<tr>
+<td style="text-align:right">138</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">10.128</td>
+</tr>
+<tr>
+<td style="text-align:right">41</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-0.557</td>
+</tr>
+<tr>
+<td style="text-align:right">139</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-34.798</td>
+</tr>
+<tr>
+<td style="text-align:right">140</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">25.598</td>
+</tr>
+<tr>
+<td style="text-align:right">40</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-34.798</td>
+</tr>
+<tr>
+<td style="text-align:right">141</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-51.576</td>
+</tr>
+<tr>
+<td style="text-align:right">137</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-32.118</td>
+</tr>
+<tr>
+<td style="text-align:right">39</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">40.787</td>
+</tr>
+<tr>
+<td style="text-align:right">143</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-34.287</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-27.611</td>
+</tr>
+<tr>
+<td style="text-align:right">144</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">8.525</td>
+</tr>
+<tr>
+<td style="text-align:right">145</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-14.798</td>
+</tr>
+<tr>
+<td style="text-align:right">37</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1.608</td>
+</tr>
+<tr>
+<td style="text-align:right">146</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">13.546</td>
+</tr>
+<tr>
+<td style="text-align:right">142</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">7.617</td>
+</tr>
+<tr>
+<td style="text-align:right">42</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">8.846</td>
+</tr>
+<tr>
+<td style="text-align:right">136</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-13.76</td>
+</tr>
+<tr>
+<td style="text-align:right">43</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">58.221</td>
+</tr>
+<tr>
+<td style="text-align:right">126</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-29.679</td>
+</tr>
+<tr>
+<td style="text-align:right">48</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">14.935</td>
+</tr>
+<tr>
+<td style="text-align:right">127</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">6.071</td>
+</tr>
+<tr>
+<td style="text-align:right">128</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">20.155</td>
+</tr>
+<tr>
+<td style="text-align:right">47</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-24.802</td>
+</tr>
+<tr>
+<td style="text-align:right">129</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-37.516</td>
+</tr>
+<tr>
+<td style="text-align:right">106</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">430</td>
+<td style="text-align:right">343.772</td>
+</tr>
+<tr>
+<td style="text-align:right">59</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">460</td>
+<td style="text-align:right">397.73</td>
+</tr>
+<tr>
+<td style="text-align:right">168</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">390</td>
+<td style="text-align:right">379.694</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">590</td>
+<td style="text-align:right">355.092</td>
+</tr>
+<tr>
+<td style="text-align:right">107</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">360</td>
+<td style="text-align:right">369.28</td>
+</tr>
+<tr>
+<td style="text-align:right">58</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">320</td>
+<td style="text-align:right">361.984</td>
+</tr>
+<tr>
+<td style="text-align:right">167</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">260</td>
+<td style="text-align:right">328.044</td>
+</tr>
+<tr>
+<td style="text-align:right">108</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">290</td>
+<td style="text-align:right">331.303</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">350</td>
+<td style="text-align:right">376.269</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">350</td>
+<td style="text-align:right">334.297</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Observação: o CSV completo correspondente permanece disponível na pasta de resultados do experimento.</p>
+</blockquote>
+<h2 id="rel-5-interpreta-o-dos-resultados">5. Interpretação dos resultados</h2>
+<p>A formulação com sinal é a mais alinhada ao objetivo da dissertação, porque mantém a interpretação física. A formulação absoluta pode apresentar desempenho numérico competitivo, mas perde informação essencial. A classificação dimensional adiciona uma leitura categórica útil, mas não substitui a regressão de <code>epsilon_t</code>.</p>
+<h2 id="rel-6-conclus-o-do-experimento">6. Conclusão do experimento</h2>
+<p>O Experimento 5 define que a variável principal dos experimentos deve permanecer <code>epsilon_t</code> com sinal. A magnitude absoluta e a classificação dimensional são úteis como análises complementares, mas não devem substituir a variável de resposta longitudinal.</p>
+</div>
+</section><div class="exp-nav"><a class="btn secondary" href="experimento-04.html">← Experimento 04</a><a class="btn" href="experimento-06.html">Experimento 06 →</a></div></main><footer><div class="wrap"><p>Material complementar da pesquisa de mestrado em Engenharia Civil. Os resultados devem ser interpretados dentro do domínio representado pela base experimental.</p></div></footer><script src="../assets/js/main.js"></script></body></html>

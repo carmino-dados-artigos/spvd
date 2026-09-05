@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Repositório científico complementar da dissertação sobre predição da variação dimensional de concretos com macrofibras e aditivos compensadores de retração." name="description"/><title>Experimento 01 · Sistema Preditivo de Variação Dimensional</title><link href="../assets/css/style.css" rel="stylesheet"/></head><body><header class="top"><div class="wrap brand"><div><strong>Sistema Preditivo de Variação Dimensional</strong><span>Repositório científico complementar</span></div><button aria-label="Abrir menu" class="nav-toggle">☰</button></div><nav class="wrap nav"><a href="../index.html">Início</a><a href="../metodologia.html">Pesquisa</a><a href="../dados.html">Dados</a><a href="../experimentos/index.html">Experimentos</a><a href="../resultados.html">Resultados</a><a href="../prototipo.html">Protótipo</a><a href="../rastreabilidade.html">Rastreabilidade</a><a href="../downloads.html">Downloads</a></nav></header><main class="wrap"><div class="eyebrow">Experimento 01</div><h1>Caracterização da variação dimensional por idade</h1><p class="lead">Caracterizar a distribuição da resposta nas sete idades, preservando o sinal da deformação.</p><div class="grid"><div class="card span-6"><h3>Resultado principal</h3><p>A base apresenta expansão, retração e estabilidade em diferentes idades. A expansão predomina em 1, 3 e 7 dias; a retração passa a predominar a partir de 14 dias.</p></div><div class="card span-6"><h3>Decisão metodológica</h3><p>Manter ε(t) com sinal como variável principal e tratar o problema como variação dimensional longitudinal.</p></div></div><h2>Evidência tabular</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>idade_label</th><th>registros</th><th>media</th><th>mediana</th><th>desvio_padrao</th><th>minimo</th><th>maximo</th><th>positivos</th><th>negativos</th><th>zeros</th></tr></thead><tbody><tr><td>12 h</td><td>207</td><td>0.0966183574879227</td><td>0.0</td><td>1.7038899425039815</td><td>-10.0</td><td>20.0</td><td>2</td><td>1</td><td>204</td></tr><tr><td>1 dia</td><td>207</td><td>11.594202898550725</td><td>20.0</td><td>68.56270296651918</td><td>-130.0</td><td>410.0</td><td>118</td><td>78</td><td>11</td></tr><tr><td>3 dias</td><td>207</td><td>19.855072463768117</td><td>50.0</td><td>119.7630275900842</td><td>-250.0</td><td>700.0</td><td>125</td><td>82</td><td>0</td></tr><tr><td>7 dias</td><td>207</td><td>15.748792270531402</td><td>70.0</td><td>177.26699375173322</td><td>-450.0</td><td>910.0</td><td>124</td><td>83</td><td>0</td></tr><tr><td>14 dias</td><td>207</td><td>-105.7487922705314</td><td>-80.0</td><td>155.77957630628404</td><td>-560.0</td><td>720.0</td><td>25</td><td>178</td><td>4</td></tr><tr><td>28 dias</td><td>206</td><td>-224.2233009708738</td><td>-220.0</td><td>148.64306122230605</td><td>-870.0</td><td>430.0</td><td>7</td><td>199</td><td>0</td></tr><tr><td>56 dias</td><td>206</td><td>-358.59223300970876</td><td>-350.0</td><td>145.37574104960242</td><td>-1000.0</td><td>210.0</td><td>5</td><td>201</td><td>0</td></tr></tbody></table></div><div class="figure"><img alt="Resultado gráfico do experimento 01" src="../assets/img/experimento_01_caracterizacao/media_variacao_por_idade.png"/><div class="caption">Figura gerada pelo Experimento 01: media_variacao_por_idade.png</div></div><div class="figure"><img alt="Resultado gráfico do experimento 01" src="../assets/img/experimento_01_caracterizacao/boxplot_variacao_por_idade.png"/><div class="caption">Figura gerada pelo Experimento 01: boxplot_variacao_por_idade.png</div></div><h2>Rastreabilidade</h2><p>Este experimento sustenta diretamente a seção <strong>4.1</strong> dos resultados parciais da dissertação.</p><div class="btns"><a class="btn secondary" href="../downloads/src/experimento_01_caracterizacao/experimento_01.py">Ver script</a><a class="btn secondary" href="../downloads/resultados/experimento_01_caracterizacao/estatisticas_por_idade.csv">Baixar tabela principal</a></div><section class="report-section" id="relatorio-detalhado">
+<div class="report-head">
+<div><div class="eyebrow">Resultados documentados</div><h2>Relatório detalhado do experimento</h2>
+<p class="lead">Conteúdo incorporado diretamente do relatório Markdown original do Experimento 01, preservando procedimentos, tabelas, resultados, interpretação e conclusão.</p></div>
+<div class="btns"><a class="btn secondary" href="../downloads/relatorios/experimentos/RELATORIO_experimento_01_caracterizacao.md">Baixar relatório .md</a></div>
+</div>
+<div class="report-content">
+<h2 id="rel-1-caracteriza-o-e-finalidade">1. Caracterização e finalidade</h2>
+<p>Este experimento inaugura a nova sequência experimental, construída de forma autônoma para avaliar a <strong>variação dimensional longitudinal do concreto</strong>. A finalidade é caracterizar o comportamento da variável de resposta nas idades de 12 h, 1 dia, 3 dias, 7 dias, 14 dias, 28 dias e 56 dias, preservando o sinal dos valores medidos.</p>
+<p>A interpretação adotada é:</p>
+<ul>
+<li>valores negativos indicam <strong>retração</strong>;</li>
+<li>valores positivos indicam <strong>expansão</strong>;</li>
+<li>valores iguais a zero indicam <strong>estabilidade dimensional</strong>.</li>
+</ul>
+<p>Esse experimento é essencial porque mostra que a variável de interesse não deve ser tratada apenas como retração. A base contém registros positivos, negativos e nulos, de modo que o termo metodologicamente mais adequado é <strong>variação dimensional</strong>.</p>
+<h2 id="rel-2-base-e-vari-veis-analisadas">2. Base e variáveis analisadas</h2>
+<p>A base utilizada é a planilha <code>Análise retração_Guilherme.xlsx</code>, localizada na raiz do projeto. Foram consideradas as colunas de variação dimensional nas sete idades experimentais. Neste experimento ainda não há treinamento de modelo; a análise é descritiva.</p>
+<h2 id="rel-3-procedimento-executado">3. Procedimento executado</h2>
+<p>O script carregou a base, padronizou os nomes das colunas, reorganizou as medidas por idade e calculou estatísticas descritivas e contagens de sinais. Também foram gerados gráficos para comparação temporal da média e da distribuição dos valores.</p>
+<h2 id="rel-4-tabelas-geradas">4. Tabelas geradas</h2>
+<h3 id="rel-tabela-1-estat-sticas-da-varia-o-dimensional-por-idade">Tabela 1 — Estatísticas da variação dimensional por idade</h3>
+<p>A Tabela 1 resume a variação dimensional em cada idade. Ela apresenta número de registros, média, mediana, desvio-padrão, valores mínimo e máximo, além da quantidade de valores positivos, negativos e iguais a zero. Essa tabela permite observar a transição entre fases com expansão relevante e fases em que a retração passa a predominar.</p>
+<p>Arquivo de origem: <code>experimento_01_caracterizacao/resultados/estatisticas_por_idade.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">registros</th>
+<th style="text-align:right">media</th>
+<th style="text-align:right">mediana</th>
+<th style="text-align:right">desvio_padrao</th>
+<th style="text-align:right">minimo</th>
+<th style="text-align:right">maximo</th>
+<th style="text-align:right">positivos</th>
+<th style="text-align:right">negativos</th>
+<th style="text-align:right">zeros</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">0.097</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1.704</td>
+<td style="text-align:right">-10</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">204</td>
+</tr>
+<tr>
+<td style="text-align:left">1 dia</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">11.594</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">68.563</td>
+<td style="text-align:right">-130</td>
+<td style="text-align:right">410</td>
+<td style="text-align:right">118</td>
+<td style="text-align:right">78</td>
+<td style="text-align:right">11</td>
+</tr>
+<tr>
+<td style="text-align:left">3 dias</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">19.855</td>
+<td style="text-align:right">50</td>
+<td style="text-align:right">119.763</td>
+<td style="text-align:right">-250</td>
+<td style="text-align:right">700</td>
+<td style="text-align:right">125</td>
+<td style="text-align:right">82</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">15.749</td>
+<td style="text-align:right">70</td>
+<td style="text-align:right">177.267</td>
+<td style="text-align:right">-450</td>
+<td style="text-align:right">910</td>
+<td style="text-align:right">124</td>
+<td style="text-align:right">83</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">-105.749</td>
+<td style="text-align:right">-80</td>
+<td style="text-align:right">155.78</td>
+<td style="text-align:right">-560</td>
+<td style="text-align:right">720</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">178</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td style="text-align:left">28 dias</td>
+<td style="text-align:right">206</td>
+<td style="text-align:right">-224.223</td>
+<td style="text-align:right">-220</td>
+<td style="text-align:right">148.643</td>
+<td style="text-align:right">-870</td>
+<td style="text-align:right">430</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">199</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">206</td>
+<td style="text-align:right">-358.592</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">145.376</td>
+<td style="text-align:right">-1000</td>
+<td style="text-align:right">210</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">201</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-2-contagem-dos-sinais-por-idade">Tabela 2 — Contagem dos sinais por idade</h3>
+<p>A Tabela 2 organiza os dados por classe de sinal: estabilidade, expansão e retração. Ela é importante porque evidencia que as idades iniciais apresentam comportamento misto, enquanto idades mais avançadas concentram maior quantidade de valores negativos.</p>
+<p>Arquivo de origem: <code>experimento_01_caracterizacao/resultados/contagem_sinais_por_idade.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">estabilidade</th>
+<th style="text-align:right">expansao</th>
+<th style="text-align:right">retracao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">204</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:left">1 dia</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">118</td>
+<td style="text-align:right">78</td>
+</tr>
+<tr>
+<td style="text-align:left">3 dias</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">125</td>
+<td style="text-align:right">82</td>
+</tr>
+<tr>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">124</td>
+<td style="text-align:right">83</td>
+</tr>
+<tr>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">178</td>
+</tr>
+<tr>
+<td style="text-align:left">28 dias</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">199</td>
+</tr>
+<tr>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">201</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rel-5-figuras-geradas">5. Figuras geradas</h2>
+<h3 id="rel-figura-1-m-dia-da-varia-o-dimensional-por-idade">Figura 1 — Média da variação dimensional por idade</h3>
+<p>A Figura 1 apresenta a média da variação dimensional em ordem temporal. O gráfico permite visualizar a evolução média do fenômeno ao longo do tempo, evitando interpretação apenas pontual aos 28 dias.</p>
+<p class="report-image"><img alt="Figura 1 — Média da variação dimensional por idade" loading="lazy" src="../assets/img/experimento_01_caracterizacao/media_variacao_por_idade.png"/></p>
+<h3 id="rel-figura-2-distribui-o-da-varia-o-dimensional-por-idade">Figura 2 — Distribuição da variação dimensional por idade</h3>
+<p>A Figura 2 apresenta a dispersão da variação dimensional por idade. O boxplot permite identificar amplitude, assimetria e presença de valores extremos em cada etapa temporal.</p>
+<p class="report-image"><img alt="Figura 2 — Distribuição da variação dimensional por idade" loading="lazy" src="../assets/img/experimento_01_caracterizacao/boxplot_variacao_por_idade.png"/></p>
+<h2 id="rel-6-interpreta-o-dos-resultados">6. Interpretação dos resultados</h2>
+<p>Os resultados confirmam que a resposta experimental varia ao longo do tempo e que o sinal é parte relevante da interpretação física. O experimento mostra que a expansão, a retração e a estabilidade dimensional coexistem na base, especialmente nas idades iniciais.</p>
+<h2 id="rel-7-conclus-o-do-experimento">7. Conclusão do experimento</h2>
+<p>O Experimento 1 justifica a escolha de <code>epsilon_t</code> como variável de resposta longitudinal com sinal. A partir dele, a sequência experimental passa a tratar a predição como um problema de regressão temporal da variação dimensional, e não como predição isolada de retração absoluta.</p>
+</div>
+</section><div class="exp-nav"><span></span><a class="btn" href="experimento-02.html">Experimento 02 →</a></div></main><footer><div class="wrap"><p>Material complementar da pesquisa de mestrado em Engenharia Civil. Os resultados devem ser interpretados dentro do domínio representado pela base experimental.</p></div></footer><script src="../assets/js/main.js"></script></body></html>

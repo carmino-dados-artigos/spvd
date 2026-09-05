@@ -1,0 +1,4 @@
+registros_base_original: 207
+registros_base_longitudinal: 1447
+amostras_distintas: 207
+idades_distintas: 7

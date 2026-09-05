@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Repositório científico complementar da dissertação sobre predição da variação dimensional de concretos com macrofibras e aditivos compensadores de retração." name="description"/><title>Experimento 06 · Sistema Preditivo de Variação Dimensional</title><link href="../assets/css/style.css" rel="stylesheet"/></head><body><header class="top"><div class="wrap brand"><div><strong>Sistema Preditivo de Variação Dimensional</strong><span>Repositório científico complementar</span></div><button aria-label="Abrir menu" class="nav-toggle">☰</button></div><nav class="wrap nav"><a href="../index.html">Início</a><a href="../metodologia.html">Pesquisa</a><a href="../dados.html">Dados</a><a href="../experimentos/index.html">Experimentos</a><a href="../resultados.html">Resultados</a><a href="../prototipo.html">Protótipo</a><a href="../rastreabilidade.html">Rastreabilidade</a><a href="../downloads.html">Downloads</a></nav></header><main class="wrap"><div class="eyebrow">Experimento 06</div><h1>Análise dos erros</h1><p class="lead">Investigar onde o modelo apresenta maior dificuldade por idade, cimento, cura, local, estado, região e faixas quantitativas.</p><div class="grid"><div class="card span-6"><h3>Resultado principal</h3><p>O erro médio cresce das idades iniciais até cerca de 28 dias e varia de modo importante entre grupos da base.</p></div><div class="card span-6"><h3>Decisão metodológica</h3><p>Usar análise estratificada para discutir domínio de validade e evitar defesa baseada apenas em métricas globais.</p></div></div><h2>Evidência tabular</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>idade_label</th><th>quantidade</th><th>erro_medio</th><th>erro_mediano</th><th>erro_maximo</th><th>variacao_media</th></tr></thead><tbody><tr><td>12 h</td><td>207</td><td>2.8434460547504026</td><td>0.0</td><td>164.805</td><td>0.0966183574879227</td></tr><tr><td>1 dia</td><td>207</td><td>28.07190246146768</td><td>16.281666666666652</td><td>245.5</td><td>11.594202898550725</td></tr><tr><td>3 dias</td><td>207</td><td>44.41208362088797</td><td>26.503333333333302</td><td>350.54166666666674</td><td>19.855072463768117</td></tr><tr><td>7 dias</td><td>207</td><td>61.31752703013573</td><td>30.12333333333332</td><td>480.7416666666667</td><td>15.748792270531402</td></tr><tr><td>14 dias</td><td>207</td><td>66.73586149626004</td><td>39.48166666666666</td><td>400.69666666666666</td><td>-105.7487922705314</td></tr><tr><td>28 dias</td><td>206</td><td>68.87014197102789</td><td>45.775833333333324</td><td>556.7516666666668</td><td>-224.2233009708738</td></tr><tr><td>56 dias</td><td>206</td><td>67.0176196255201</td><td>40.97071428571434</td><td>525.6399999999999</td><td>-358.59223300970876</td></tr></tbody></table></div><div class="figure"><img alt="Resultado gráfico do experimento 06" src="../assets/img/experimento_06_analise_erros/erro_medio_por_idade.png"/><div class="caption">Figura gerada pelo Experimento 06: erro_medio_por_idade.png</div></div><h2>Rastreabilidade</h2><p>Este experimento sustenta diretamente a seção <strong>4.6</strong> dos resultados parciais da dissertação.</p><div class="btns"><a class="btn secondary" href="../downloads/src/experimento_06_analise_erros/experimento_06.py">Ver script</a><a class="btn secondary" href="../downloads/resultados/experimento_06_analise_erros/erro_por_idade.csv">Baixar tabela principal</a></div><section class="report-section" id="relatorio-detalhado">
+<div class="report-head">
+<div><div class="eyebrow">Resultados documentados</div><h2>Relatório detalhado do experimento</h2>
+<p class="lead">Conteúdo incorporado diretamente do relatório Markdown original do Experimento 06, preservando procedimentos, tabelas, resultados, interpretação e conclusão.</p></div>
+<div class="btns"><a class="btn secondary" href="../downloads/relatorios/experimentos/RELATORIO_experimento_06_analise_erros.md">Baixar relatório .md</a></div>
+</div>
+<div class="report-content">
+<h2 id="rel-1-caracteriza-o-e-finalidade">1. Caracterização e finalidade</h2>
+<p>Este experimento analisa os erros do modelo longitudinal. A finalidade é identificar onde o modelo apresenta maior dificuldade: por idade, tipo de cimento, cura, local, estado, região e faixas de variáveis quantitativas.</p>
+<p>A análise de erro é essencial porque uma métrica global pode ocultar fragilidades localizadas. Um modelo pode ter bom RMSE médio, mas errar mais em uma idade específica ou em determinado grupo experimental.</p>
+<h2 id="rel-2-procedimento-executado">2. Procedimento executado</h2>
+<p>O modelo foi aplicado à base longitudinal e os resíduos foram calculados para cada registro. Em seguida, os erros absolutos foram agrupados por variáveis categóricas e por faixas de variáveis numéricas. Também foram identificados os maiores erros individuais.</p>
+<h2 id="rel-3-tabelas-geradas">3. Tabelas geradas</h2>
+<h3 id="rel-tabela-1-base-completa-com-erros">Tabela 1 — Base completa com erros</h3>
+<p>A Tabela 1 reúne a base longitudinal com as predições, resíduos e erros absolutos. Ela é a tabela central para auditoria do desempenho do modelo em nível de registro.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/base_com_erros.csv</code></p>
+<p>A tabela completa possui <strong>1447 registros</strong> e <strong>21 colunas</strong>. Para manter a leitura do relatório viável, apresenta-se abaixo uma visualização parcial, mantendo o arquivo CSV completo na pasta de resultados.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">wb</th>
+<th style="text-align:right">cement_consumption</th>
+<th style="text-align:right">water_consumption</th>
+<th style="text-align:right">dry_d1</th>
+<th style="text-align:right">fibra_metalica</th>
+<th style="text-align:right">macrofibra_pp</th>
+<th style="text-align:right">microfibra_pp</th>
+<th style="text-align:right">idade_dias</th>
+<th style="text-align:right">idade_horas</th>
+<th style="text-align:left">cement</th>
+<th style="text-align:left">curing</th>
+<th style="text-align:left">local_ensaio</th>
+<th style="text-align:left">estado</th>
+<th style="text-align:left">regiao</th>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">epsilon_t</th>
+<th style="text-align:right">amostra_id</th>
+<th style="text-align:right">epsilon_previsto</th>
+<th style="text-align:right">residuo</th>
+<th style="text-align:right">erro_absoluto</th>
+<th style="text-align:left">sinal_previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.09</td>
+<td style="text-align:right">-0.09</td>
+<td style="text-align:right">0.09</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">336</td>
+<td style="text-align:right">184.8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5.5</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">138</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.62</td>
+<td style="text-align:right">325</td>
+<td style="text-align:right">201.5</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">41</td>
+<td style="text-align:right">0.27</td>
+<td style="text-align:right">-0.27</td>
+<td style="text-align:right">0.27</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">336</td>
+<td style="text-align:right">184.8</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">139</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">336</td>
+<td style="text-align:right">184.8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5.5</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">140</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">336</td>
+<td style="text-align:right">184.8</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">40</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">380</td>
+<td style="text-align:right">190</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">DF</td>
+<td style="text-align:left">Centro Oeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">141</td>
+<td style="text-align:right">-0.05</td>
+<td style="text-align:right">0.05</td>
+<td style="text-align:right">0.05</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.51</td>
+<td style="text-align:right">373</td>
+<td style="text-align:right">190.23</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP V ARI RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">MG</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">137</td>
+<td style="text-align:right">0.19</td>
+<td style="text-align:right">-0.19</td>
+<td style="text-align:right">0.19</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.51</td>
+<td style="text-align:right">380</td>
+<td style="text-align:right">193.8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP V ARI RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">39</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">336</td>
+<td style="text-align:right">184.8</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">143</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">335</td>
+<td style="text-align:right">184.25</td>
+<td style="text-align:right">12.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5.5</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">38</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.49</td>
+<td style="text-align:right">380</td>
+<td style="text-align:right">186.2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5.5</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP V ARI RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">CE</td>
+<td style="text-align:left">Nordeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">144</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.528</td>
+<td style="text-align:right">360</td>
+<td style="text-align:right">190.08</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II F 32 RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">AM</td>
+<td style="text-align:left">Norte</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">145</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">340</td>
+<td style="text-align:right">187</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II F 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">PR</td>
+<td style="text-align:left">Sul</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">37</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">336</td>
+<td style="text-align:right">184.8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II F 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">PR</td>
+<td style="text-align:left">Sul</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">146</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.52</td>
+<td style="text-align:right">356</td>
+<td style="text-align:right">185.12</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">142</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">327</td>
+<td style="text-align:right">179.85</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">42</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.53</td>
+<td style="text-align:right">340</td>
+<td style="text-align:right">180.2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5.5</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II F 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">BA</td>
+<td style="text-align:left">Nordeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">136</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.51</td>
+<td style="text-align:right">380</td>
+<td style="text-align:right">193.8</td>
+<td style="text-align:right">12.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP III RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">43</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.62</td>
+<td style="text-align:right">311</td>
+<td style="text-align:right">192.82</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II F 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">BA</td>
+<td style="text-align:left">Nordeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">126</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">336</td>
+<td style="text-align:right">184.8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">48</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.51</td>
+<td style="text-align:right">380</td>
+<td style="text-align:right">193.8</td>
+<td style="text-align:right">12.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP V ARI RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">127</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.54</td>
+<td style="text-align:right">344</td>
+<td style="text-align:right">185.76</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2.236</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">128</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">336</td>
+<td style="text-align:right">184.8</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">47</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">estabilidade</td>
+</tr>
+<tr>
+<td style="text-align:right">0.54</td>
+<td style="text-align:right">341</td>
+<td style="text-align:right">184.14</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">12</td>
+<td style="text-align:left">CP II F 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">129</td>
+<td style="text-align:right">0.265</td>
+<td style="text-align:right">-0.265</td>
+<td style="text-align:right">0.265</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">339</td>
+<td style="text-align:right">203.4</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-430</td>
+<td style="text-align:right">106</td>
+<td style="text-align:right">-328.082</td>
+<td style="text-align:right">-101.918</td>
+<td style="text-align:right">101.918</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.547</td>
+<td style="text-align:right">320</td>
+<td style="text-align:right">175.04</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-460</td>
+<td style="text-align:right">59</td>
+<td style="text-align:right">-448.098</td>
+<td style="text-align:right">-11.902</td>
+<td style="text-align:right">11.902</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.53</td>
+<td style="text-align:right">360</td>
+<td style="text-align:right">190.8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">DF</td>
+<td style="text-align:left">Centro Oeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-390</td>
+<td style="text-align:right">168</td>
+<td style="text-align:right">-467.728</td>
+<td style="text-align:right">77.728</td>
+<td style="text-align:right">77.728</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">360</td>
+<td style="text-align:right">198</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-590</td>
+<td style="text-align:right">22</td>
+<td style="text-align:right">-431.286</td>
+<td style="text-align:right">-158.714</td>
+<td style="text-align:right">158.714</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.62</td>
+<td style="text-align:right">325</td>
+<td style="text-align:right">201.5</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-360</td>
+<td style="text-align:right">107</td>
+<td style="text-align:right">-378.505</td>
+<td style="text-align:right">18.505</td>
+<td style="text-align:right">18.505</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.49</td>
+<td style="text-align:right">380</td>
+<td style="text-align:right">186.2</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">PI</td>
+<td style="text-align:left">Nordeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-320</td>
+<td style="text-align:right">58</td>
+<td style="text-align:right">-308.33</td>
+<td style="text-align:right">-11.67</td>
+<td style="text-align:right">11.67</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">336</td>
+<td style="text-align:right">184.8</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5.5</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-260</td>
+<td style="text-align:right">167</td>
+<td style="text-align:right">-275.257</td>
+<td style="text-align:right">15.257</td>
+<td style="text-align:right">15.257</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.52</td>
+<td style="text-align:right">356</td>
+<td style="text-align:right">185.12</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">PB</td>
+<td style="text-align:left">Nordeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-290</td>
+<td style="text-align:right">108</td>
+<td style="text-align:right">-308.993</td>
+<td style="text-align:right">18.993</td>
+<td style="text-align:right">18.993</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.52</td>
+<td style="text-align:right">327</td>
+<td style="text-align:right">170.04</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP III</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">27</td>
+<td style="text-align:right">-375.682</td>
+<td style="text-align:right">25.682</td>
+<td style="text-align:right">25.682</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">335</td>
+<td style="text-align:right">184.25</td>
+<td style="text-align:right">12.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5.5</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">38</td>
+<td style="text-align:right">-338.569</td>
+<td style="text-align:right">-11.431</td>
+<td style="text-align:right">11.431</td>
+<td style="text-align:left">retracao</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Observação: o CSV completo correspondente permanece disponível na pasta de resultados do experimento.</p>
+</blockquote>
+<h3 id="rel-tabela-2-erro-por-idade">Tabela 2 — Erro por idade</h3>
+<p>A Tabela 2 apresenta o erro médio, mediano e máximo por idade. Ela permite avaliar se o modelo tem maior dificuldade nas idades iniciais, intermediárias ou finais.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_idade.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">2.843</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">164.805</td>
+<td style="text-align:right">0.097</td>
+</tr>
+<tr>
+<td style="text-align:left">1 dia</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">28.072</td>
+<td style="text-align:right">16.282</td>
+<td style="text-align:right">245.5</td>
+<td style="text-align:right">11.594</td>
+</tr>
+<tr>
+<td style="text-align:left">3 dias</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">44.412</td>
+<td style="text-align:right">26.503</td>
+<td style="text-align:right">350.542</td>
+<td style="text-align:right">19.855</td>
+</tr>
+<tr>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">61.318</td>
+<td style="text-align:right">30.123</td>
+<td style="text-align:right">480.742</td>
+<td style="text-align:right">15.749</td>
+</tr>
+<tr>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">207</td>
+<td style="text-align:right">66.736</td>
+<td style="text-align:right">39.482</td>
+<td style="text-align:right">400.697</td>
+<td style="text-align:right">-105.749</td>
+</tr>
+<tr>
+<td style="text-align:left">28 dias</td>
+<td style="text-align:right">206</td>
+<td style="text-align:right">68.87</td>
+<td style="text-align:right">45.776</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-224.223</td>
+</tr>
+<tr>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">206</td>
+<td style="text-align:right">67.018</td>
+<td style="text-align:right">40.971</td>
+<td style="text-align:right">525.64</td>
+<td style="text-align:right">-358.592</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-3-erro-por-tipo-de-cimento">Tabela 3 — Erro por tipo de cimento</h3>
+<p>A Tabela 3 mostra a distribuição dos erros por tipo de cimento. Ela ajuda a identificar se determinados cimentos estão associados a maior incerteza preditiva.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_cimento.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">cement</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">CP II F 32</td>
+<td style="text-align:right">21</td>
+<td style="text-align:right">144.389</td>
+<td style="text-align:right">157.758</td>
+<td style="text-align:right">396.637</td>
+<td style="text-align:right">158.571</td>
+</tr>
+<tr>
+<td style="text-align:left">CP III RS</td>
+<td style="text-align:right">98</td>
+<td style="text-align:right">95.898</td>
+<td style="text-align:right">47.564</td>
+<td style="text-align:right">457.045</td>
+<td style="text-align:right">-31.224</td>
+</tr>
+<tr>
+<td style="text-align:left">CP II Z 32</td>
+<td style="text-align:right">35</td>
+<td style="text-align:right">66.829</td>
+<td style="text-align:right">51.392</td>
+<td style="text-align:right">207.08</td>
+<td style="text-align:right">25.429</td>
+</tr>
+<tr>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:right">329</td>
+<td style="text-align:right">64.079</td>
+<td style="text-align:right">28.467</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-124.316</td>
+</tr>
+<tr>
+<td style="text-align:left">CP V ARI RS</td>
+<td style="text-align:right">208</td>
+<td style="text-align:right">40.589</td>
+<td style="text-align:right">27.329</td>
+<td style="text-align:right">375.868</td>
+<td style="text-align:right">-113.029</td>
+</tr>
+<tr>
+<td style="text-align:left">CP II F 40</td>
+<td style="text-align:right">154</td>
+<td style="text-align:right">37.49</td>
+<td style="text-align:right">23.521</td>
+<td style="text-align:right">199.225</td>
+<td style="text-align:right">-90.974</td>
+</tr>
+<tr>
+<td style="text-align:left">CP II</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">35.883</td>
+<td style="text-align:right">29.763</td>
+<td style="text-align:right">99.352</td>
+<td style="text-align:right">-115</td>
+</tr>
+<tr>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:right">476</td>
+<td style="text-align:right">35.837</td>
+<td style="text-align:right">17.265</td>
+<td style="text-align:right">359.328</td>
+<td style="text-align:right">-88.992</td>
+</tr>
+<tr>
+<td style="text-align:left">CP III</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">30.703</td>
+<td style="text-align:right">25.682</td>
+<td style="text-align:right">62.425</td>
+<td style="text-align:right">-91.429</td>
+</tr>
+<tr>
+<td style="text-align:left">CP II E 40 RS</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">24.762</td>
+<td style="text-align:right">15.104</td>
+<td style="text-align:right">78.173</td>
+<td style="text-align:right">-90.714</td>
+</tr>
+<tr>
+<td style="text-align:left">CP II F 32 RS</td>
+<td style="text-align:right">35</td>
+<td style="text-align:right">23.378</td>
+<td style="text-align:right">19.645</td>
+<td style="text-align:right">69.673</td>
+<td style="text-align:right">-88.286</td>
+</tr>
+<tr>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">21.443</td>
+<td style="text-align:right">19.945</td>
+<td style="text-align:right">69.563</td>
+<td style="text-align:right">-110.357</td>
+</tr>
+<tr>
+<td style="text-align:left">CP II E</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">18.805</td>
+<td style="text-align:right">8.795</td>
+<td style="text-align:right">88.403</td>
+<td style="text-align:right">-95</td>
+</tr>
+<tr>
+<td style="text-align:left">CP II Z 40</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">15.798</td>
+<td style="text-align:right">14.131</td>
+<td style="text-align:right">43.635</td>
+<td style="text-align:right">-107.857</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-4-erro-por-condi-o-de-cura">Tabela 4 — Erro por condição de cura</h3>
+<p>A Tabela 4 apresenta os erros por condição de cura. Essa análise é relevante porque a cura afeta diretamente a evolução da variação dimensional.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_cura.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">curing</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">56 dias ar 50% umidade</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">226.577</td>
+<td style="text-align:right">269.341</td>
+<td style="text-align:right">442.057</td>
+<td style="text-align:right">-272.857</td>
+</tr>
+<tr>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:right">1370</td>
+<td style="text-align:right">48.254</td>
+<td style="text-align:right">25.077</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-91.372</td>
+</tr>
+<tr>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:right">70</td>
+<td style="text-align:right">34.264</td>
+<td style="text-align:right">14.361</td>
+<td style="text-align:right">284.975</td>
+<td style="text-align:right">-72.429</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-5-erro-por-local-de-ensaio">Tabela 5 — Erro por local de ensaio</h3>
+<p>A Tabela 5 compara os erros por local de ensaio. Diferenças entre laboratório, campo e registros não informados podem indicar efeito contextual ou heterogeneidade da base.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_local.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">local_ensaio</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Campo</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">251.571</td>
+<td style="text-align:right">266.196</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-326.071</td>
+</tr>
+<tr>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:right">432</td>
+<td style="text-align:right">51.993</td>
+<td style="text-align:right">27.986</td>
+<td style="text-align:right">442.057</td>
+<td style="text-align:right">-72.894</td>
+</tr>
+<tr>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:right">980</td>
+<td style="text-align:right">41.218</td>
+<td style="text-align:right">21.503</td>
+<td style="text-align:right">457.045</td>
+<td style="text-align:right">-92.745</td>
+</tr>
+<tr>
+<td style="text-align:left">Obra</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">27.663</td>
+<td style="text-align:right">28.208</td>
+<td style="text-align:right">48.769</td>
+<td style="text-align:right">-92.857</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-6-erro-por-estado">Tabela 6 — Erro por estado</h3>
+<p>A Tabela 6 apresenta o erro por estado. A leitura deve ser cuidadosa, pois estados com poucos registros podem produzir médias instáveis.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_estado.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">estado</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SC</td>
+<td style="text-align:right">42</td>
+<td style="text-align:right">121.182</td>
+<td style="text-align:right">108.76</td>
+<td style="text-align:right">396.637</td>
+<td style="text-align:right">28.81</td>
+</tr>
+<tr>
+<td style="text-align:left">RN</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">102.143</td>
+<td style="text-align:right">100.351</td>
+<td style="text-align:right">264.24</td>
+<td style="text-align:right">-186.429</td>
+</tr>
+<tr>
+<td style="text-align:left">ES</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">84.678</td>
+<td style="text-align:right">28.642</td>
+<td style="text-align:right">284.975</td>
+<td style="text-align:right">-200</td>
+</tr>
+<tr>
+<td style="text-align:left">RJ</td>
+<td style="text-align:right">182</td>
+<td style="text-align:right">80.783</td>
+<td style="text-align:right">45.664</td>
+<td style="text-align:right">457.045</td>
+<td style="text-align:right">-79.011</td>
+</tr>
+<tr>
+<td style="text-align:left">PR</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">74.824</td>
+<td style="text-align:right">74.482</td>
+<td style="text-align:right">167.292</td>
+<td style="text-align:right">-82.143</td>
+</tr>
+<tr>
+<td style="text-align:left">RS</td>
+<td style="text-align:right">35</td>
+<td style="text-align:right">66.829</td>
+<td style="text-align:right">51.392</td>
+<td style="text-align:right">207.08</td>
+<td style="text-align:right">25.429</td>
+</tr>
+<tr>
+<td style="text-align:left">PE</td>
+<td style="text-align:right">35</td>
+<td style="text-align:right">46.68</td>
+<td style="text-align:right">34.842</td>
+<td style="text-align:right">157.48</td>
+<td style="text-align:right">-102</td>
+</tr>
+<tr>
+<td style="text-align:left">MT</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">46.391</td>
+<td style="text-align:right">18.054</td>
+<td style="text-align:right">199.225</td>
+<td style="text-align:right">-110.714</td>
+</tr>
+<tr>
+<td style="text-align:left">SP</td>
+<td style="text-align:right">733</td>
+<td style="text-align:right">44.97</td>
+<td style="text-align:right">21.295</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-99.973</td>
+</tr>
+<tr>
+<td style="text-align:left">MG</td>
+<td style="text-align:right">21</td>
+<td style="text-align:right">30.278</td>
+<td style="text-align:right">28.953</td>
+<td style="text-align:right">83.16</td>
+<td style="text-align:right">-76.667</td>
+</tr>
+<tr>
+<td style="text-align:left">BA</td>
+<td style="text-align:right">42</td>
+<td style="text-align:right">28.396</td>
+<td style="text-align:right">23.988</td>
+<td style="text-align:right">90.693</td>
+<td style="text-align:right">-90.476</td>
+</tr>
+<tr>
+<td style="text-align:left">PB</td>
+<td style="text-align:right">42</td>
+<td style="text-align:right">24.308</td>
+<td style="text-align:right">19.536</td>
+<td style="text-align:right">101.91</td>
+<td style="text-align:right">-106.19</td>
+</tr>
+<tr>
+<td style="text-align:left">PI</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">24.189</td>
+<td style="text-align:right">24.993</td>
+<td style="text-align:right">73.925</td>
+<td style="text-align:right">-127.857</td>
+</tr>
+<tr>
+<td style="text-align:left">AM</td>
+<td style="text-align:right">35</td>
+<td style="text-align:right">23.378</td>
+<td style="text-align:right">19.645</td>
+<td style="text-align:right">69.673</td>
+<td style="text-align:right">-88.286</td>
+</tr>
+<tr>
+<td style="text-align:left">AL</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">22.539</td>
+<td style="text-align:right">24.987</td>
+<td style="text-align:right">45.656</td>
+<td style="text-align:right">-107.857</td>
+</tr>
+<tr>
+<td style="text-align:left">CE</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">21.632</td>
+<td style="text-align:right">10.289</td>
+<td style="text-align:right">69.272</td>
+<td style="text-align:right">-105</td>
+</tr>
+<tr>
+<td style="text-align:left">DF</td>
+<td style="text-align:right">98</td>
+<td style="text-align:right">21.584</td>
+<td style="text-align:right">17.776</td>
+<td style="text-align:right">77.97</td>
+<td style="text-align:right">-95.408</td>
+</tr>
+<tr>
+<td style="text-align:left">SE</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">20.346</td>
+<td style="text-align:right">9.444</td>
+<td style="text-align:right">69.563</td>
+<td style="text-align:right">-112.857</td>
+</tr>
+<tr>
+<td style="text-align:left">TO</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">18.991</td>
+<td style="text-align:right">16.945</td>
+<td style="text-align:right">47.511</td>
+<td style="text-align:right">-92.143</td>
+</tr>
+<tr>
+<td style="text-align:left">PA</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">18.805</td>
+<td style="text-align:right">8.795</td>
+<td style="text-align:right">88.403</td>
+<td style="text-align:right">-95</td>
+</tr>
+<tr>
+<td style="text-align:left">SP</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">16.116</td>
+<td style="text-align:right">8.342</td>
+<td style="text-align:right">94.455</td>
+<td style="text-align:right">-88.929</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-7-erro-por-regi-o">Tabela 7 — Erro por região</h3>
+<p>A Tabela 7 agrupa os erros por região, permitindo verificar padrões espaciais mais agregados.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_regiao.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">regiao</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Sul</td>
+<td style="text-align:right">105</td>
+<td style="text-align:right">90.702</td>
+<td style="text-align:right">86.513</td>
+<td style="text-align:right">396.637</td>
+<td style="text-align:right">-1.905</td>
+</tr>
+<tr>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:right">978</td>
+<td style="text-align:right">51.061</td>
+<td style="text-align:right">24.133</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-96.687</td>
+</tr>
+<tr>
+<td style="text-align:left">Nordeste</td>
+<td style="text-align:right">203</td>
+<td style="text-align:right">33.424</td>
+<td style="text-align:right">23.065</td>
+<td style="text-align:right">264.24</td>
+<td style="text-align:right">-108.768</td>
+</tr>
+<tr>
+<td style="text-align:left">Centro Oeste</td>
+<td style="text-align:right">112</td>
+<td style="text-align:right">24.684</td>
+<td style="text-align:right">17.94</td>
+<td style="text-align:right">199.225</td>
+<td style="text-align:right">-97.321</td>
+</tr>
+<tr>
+<td style="text-align:left">Norte</td>
+<td style="text-align:right">49</td>
+<td style="text-align:right">22.072</td>
+<td style="text-align:right">17.292</td>
+<td style="text-align:right">88.403</td>
+<td style="text-align:right">-90.204</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-8-erro-por-faixa-de-rela-o-a-c">Tabela 8 — Erro por faixa de relação a/c</h3>
+<p>A Tabela 8 organiza os erros por faixas da relação água/cimento. Essa variável é tecnicamente relevante para o comportamento dimensional.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_faixa_wb.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">faixa_wb</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:right">175</td>
+<td style="text-align:right">87.712</td>
+<td style="text-align:right">32.153</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-138</td>
+</tr>
+<tr>
+<td style="text-align:left">(0.54, 0.55]</td>
+<td style="text-align:right">518</td>
+<td style="text-align:right">45.519</td>
+<td style="text-align:right">21.455</td>
+<td style="text-align:right">457.045</td>
+<td style="text-align:right">-72.876</td>
+</tr>
+<tr>
+<td style="text-align:left">(0.453, 0.51]</td>
+<td style="text-align:right">383</td>
+<td style="text-align:right">42.936</td>
+<td style="text-align:right">27.113</td>
+<td style="text-align:right">375.868</td>
+<td style="text-align:right">-107.285</td>
+</tr>
+<tr>
+<td style="text-align:left">(0.51, 0.54]</td>
+<td style="text-align:right">371</td>
+<td style="text-align:right">39.677</td>
+<td style="text-align:right">21.654</td>
+<td style="text-align:right">396.637</td>
+<td style="text-align:right">-78.625</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-9-erro-por-faixa-de-consumo-de-cimento">Tabela 9 — Erro por faixa de consumo de cimento</h3>
+<p>A Tabela 9 avalia se o consumo de cimento está associado a faixas de maior erro preditivo.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_faixa_cement_consumption.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">faixa_cement_consumption</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">(310.999, 336.0]</td>
+<td style="text-align:right">532</td>
+<td style="text-align:right">58.606</td>
+<td style="text-align:right">22.423</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-83.139</td>
+</tr>
+<tr>
+<td style="text-align:left">(370.0, 424.0]</td>
+<td style="text-align:right">315</td>
+<td style="text-align:right">48.019</td>
+<td style="text-align:right">28.953</td>
+<td style="text-align:right">375.868</td>
+<td style="text-align:right">-109.016</td>
+</tr>
+<tr>
+<td style="text-align:left">(343.0, 370.0]</td>
+<td style="text-align:right">404</td>
+<td style="text-align:right">40.987</td>
+<td style="text-align:right">24.171</td>
+<td style="text-align:right">396.637</td>
+<td style="text-align:right">-87.45</td>
+</tr>
+<tr>
+<td style="text-align:left">(336.0, 343.0]</td>
+<td style="text-align:right">196</td>
+<td style="text-align:right">36.886</td>
+<td style="text-align:right">21.089</td>
+<td style="text-align:right">359.328</td>
+<td style="text-align:right">-93.163</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-10-erro-por-faixa-de-consumo-de-gua">Tabela 10 — Erro por faixa de consumo de água</h3>
+<p>A Tabela 10 avalia o erro por consumo de água. Essa leitura é importante porque a água participa diretamente das interações de dosagem e da evolução dimensional.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_faixa_water_consumption.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">faixa_water_consumption</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:right">350</td>
+<td style="text-align:right">69.444</td>
+<td style="text-align:right">32.634</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-137.2</td>
+</tr>
+<tr>
+<td style="text-align:left">(185.76, 192.0]</td>
+<td style="text-align:right">357</td>
+<td style="text-align:right">45.3</td>
+<td style="text-align:right">26.013</td>
+<td style="text-align:right">396.637</td>
+<td style="text-align:right">-81.176</td>
+</tr>
+<tr>
+<td style="text-align:left">(169.049, 184.8]</td>
+<td style="text-align:right">572</td>
+<td style="text-align:right">43.632</td>
+<td style="text-align:right">21.089</td>
+<td style="text-align:right">457.045</td>
+<td style="text-align:right">-68.724</td>
+</tr>
+<tr>
+<td style="text-align:left">(184.8, 185.76]</td>
+<td style="text-align:right">168</td>
+<td style="text-align:right">27.724</td>
+<td style="text-align:right">17.746</td>
+<td style="text-align:right">119.148</td>
+<td style="text-align:right">-94.345</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-11-erro-por-faixa-de-dry-d1">Tabela 11 — Erro por faixa de DRY D1</h3>
+<p>A Tabela 11 avalia o erro por faixa de consumo de DRY D1, variável associada ao aditivo compensador de retração.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/erro_por_faixa_dry_d1.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">faixa_dry_d1</th>
+<th style="text-align:right">quantidade</th>
+<th style="text-align:right">erro_medio</th>
+<th style="text-align:right">erro_mediano</th>
+<th style="text-align:right">erro_maximo</th>
+<th style="text-align:right">variacao_media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">(12.5, 30.0]</td>
+<td style="text-align:right">280</td>
+<td style="text-align:right">54.188</td>
+<td style="text-align:right">19.319</td>
+<td style="text-align:right">457.045</td>
+<td style="text-align:right">11.714</td>
+</tr>
+<tr>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:right">887</td>
+<td style="text-align:right">50.224</td>
+<td style="text-align:right">25.95</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:right">-141.522</td>
+</tr>
+<tr>
+<td style="text-align:left">(10.0, 12.5]</td>
+<td style="text-align:right">280</td>
+<td style="text-align:right">37.041</td>
+<td style="text-align:right">22.674</td>
+<td style="text-align:right">247.138</td>
+<td style="text-align:right">-35.393</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-12-maiores-erros-individuais">Tabela 12 — Maiores erros individuais</h3>
+<p>A Tabela 12 apresenta os maiores erros absolutos. Ela é útil para inspeção qualitativa dos casos mais difíceis e para identificar combinações de variáveis que o modelo ainda não representa adequadamente.</p>
+<p>Arquivo de origem: <code>experimento_06_analise_erros/resultados/maiores_erros.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">wb</th>
+<th style="text-align:right">cement_consumption</th>
+<th style="text-align:right">water_consumption</th>
+<th style="text-align:right">dry_d1</th>
+<th style="text-align:left">fibra_metalica</th>
+<th style="text-align:right">macrofibra_pp</th>
+<th style="text-align:right">microfibra_pp</th>
+<th style="text-align:right">idade_dias</th>
+<th style="text-align:right">idade_horas</th>
+<th style="text-align:left">cement</th>
+<th style="text-align:left">curing</th>
+<th style="text-align:left">local_ensaio</th>
+<th style="text-align:left">estado</th>
+<th style="text-align:left">regiao</th>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">epsilon_t</th>
+<th style="text-align:right">amostra_id</th>
+<th style="text-align:right">epsilon_previsto</th>
+<th style="text-align:right">residuo</th>
+<th style="text-align:right">erro_absoluto</th>
+<th style="text-align:left">sinal_previsto</th>
+<th style="text-align:left">faixa_dry_d1</th>
+<th style="text-align:left">faixa_wb</th>
+<th style="text-align:left">faixa_water_consumption</th>
+<th style="text-align:left">faixa_cement_consumption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">332</td>
+<td style="text-align:right">182.6</td>
+<td style="text-align:right">25</td>
+<td style="text-align:left"></td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">72</td>
+<td style="text-align:left">CP III RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">3 dias</td>
+<td style="text-align:right">60</td>
+<td style="text-align:right">191</td>
+<td style="text-align:right">410.542</td>
+<td style="text-align:right">-350.542</td>
+<td style="text-align:right">350.542</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:left">(12.5, 30.0]</td>
+<td style="text-align:left">(0.54, 0.55]</td>
+<td style="text-align:left">(169.049, 184.8]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">168</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">-450</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">-107.187</td>
+<td style="text-align:right">-342.813</td>
+<td style="text-align:right">342.813</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">8</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">168</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">-430</td>
+<td style="text-align:right">155</td>
+<td style="text-align:right">50.742</td>
+<td style="text-align:right">-480.742</td>
+<td style="text-align:right">480.742</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">332</td>
+<td style="text-align:right">182.6</td>
+<td style="text-align:right">25</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">168</td>
+<td style="text-align:left">CP III RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">620</td>
+<td style="text-align:right">192</td>
+<td style="text-align:right">162.955</td>
+<td style="text-align:right">457.045</td>
+<td style="text-align:right">457.045</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:left">(12.5, 30.0]</td>
+<td style="text-align:left">(0.54, 0.55]</td>
+<td style="text-align:left">(169.049, 184.8]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">332</td>
+<td style="text-align:right">182.6</td>
+<td style="text-align:right">30</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">168</td>
+<td style="text-align:left">CP III RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">910</td>
+<td style="text-align:right">194</td>
+<td style="text-align:right">461.388</td>
+<td style="text-align:right">448.612</td>
+<td style="text-align:right">448.612</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:left">(12.5, 30.0]</td>
+<td style="text-align:left">(0.54, 0.55]</td>
+<td style="text-align:left">(169.049, 184.8]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">339</td>
+<td style="text-align:right">203.4</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">25.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">168</td>
+<td style="text-align:left">CP II E 40</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">210</td>
+<td style="text-align:right">201</td>
+<td style="text-align:right">-149.328</td>
+<td style="text-align:right">359.328</td>
+<td style="text-align:right">359.328</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(336.0, 343.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">168</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">54</td>
+<td style="text-align:right">-340.799</td>
+<td style="text-align:right">360.799</td>
+<td style="text-align:right">360.799</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">332</td>
+<td style="text-align:right">182.6</td>
+<td style="text-align:right">25</td>
+<td style="text-align:left"></td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">168</td>
+<td style="text-align:left">CP III RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">90</td>
+<td style="text-align:right">191</td>
+<td style="text-align:right">453.175</td>
+<td style="text-align:right">-363.175</td>
+<td style="text-align:right">363.175</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:left">(12.5, 30.0]</td>
+<td style="text-align:left">(0.54, 0.55]</td>
+<td style="text-align:left">(169.049, 184.8]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">332</td>
+<td style="text-align:right">182.6</td>
+<td style="text-align:right">30</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">336</td>
+<td style="text-align:left">CP III RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">720</td>
+<td style="text-align:right">194</td>
+<td style="text-align:right">337.85</td>
+<td style="text-align:right">382.15</td>
+<td style="text-align:right">382.15</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:left">(12.5, 30.0]</td>
+<td style="text-align:left">(0.54, 0.55]</td>
+<td style="text-align:left">(169.049, 184.8]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">336</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">-140</td>
+<td style="text-align:right">54</td>
+<td style="text-align:right">-496.874</td>
+<td style="text-align:right">356.874</td>
+<td style="text-align:right">356.874</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">332</td>
+<td style="text-align:right">182.6</td>
+<td style="text-align:right">25</td>
+<td style="text-align:left"></td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">336</td>
+<td style="text-align:left">CP III RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">-30</td>
+<td style="text-align:right">191</td>
+<td style="text-align:right">327.46</td>
+<td style="text-align:right">-357.46</td>
+<td style="text-align:right">357.46</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:left">(12.5, 30.0]</td>
+<td style="text-align:left">(0.54, 0.55]</td>
+<td style="text-align:left">(169.049, 184.8]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">336</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">-560</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">-184.803</td>
+<td style="text-align:right">-375.197</td>
+<td style="text-align:right">375.197</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.51</td>
+<td style="text-align:right">380</td>
+<td style="text-align:right">193.8</td>
+<td style="text-align:right">10</td>
+<td style="text-align:left">25.000</td>
+<td style="text-align:right">5.625</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">336</td>
+<td style="text-align:left">CP V ARI RS</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Não informado</td>
+<td style="text-align:left">RJ</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">300</td>
+<td style="text-align:right">171</td>
+<td style="text-align:right">-75.868</td>
+<td style="text-align:right">375.868</td>
+<td style="text-align:right">375.868</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.453, 0.51]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(370.0, 424.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">336</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">-500</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">-184.803</td>
+<td style="text-align:right">-315.197</td>
+<td style="text-align:right">315.197</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">8</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">336</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">-540</td>
+<td style="text-align:right">155</td>
+<td style="text-align:right">-139.303</td>
+<td style="text-align:right">-400.697</td>
+<td style="text-align:right">400.697</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">10</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">336</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">-360</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-35.316</td>
+<td style="text-align:right">-324.684</td>
+<td style="text-align:right">324.684</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">672</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">28 dias</td>
+<td style="text-align:right">-290</td>
+<td style="text-align:right">54</td>
+<td style="text-align:right">-690.605</td>
+<td style="text-align:right">400.605</td>
+<td style="text-align:right">400.605</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">10</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">672</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">28 dias</td>
+<td style="text-align:right">-590</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-152.409</td>
+<td style="text-align:right">-437.591</td>
+<td style="text-align:right">437.591</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">8</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">672</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">28 dias</td>
+<td style="text-align:right">-700</td>
+<td style="text-align:right">155</td>
+<td style="text-align:right">-236.263</td>
+<td style="text-align:right">-463.737</td>
+<td style="text-align:right">463.737</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">672</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">28 dias</td>
+<td style="text-align:right">-870</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">-313.248</td>
+<td style="text-align:right">-556.752</td>
+<td style="text-align:right">556.752</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.54</td>
+<td style="text-align:right">355</td>
+<td style="text-align:right">191.7</td>
+<td style="text-align:right">15</td>
+<td style="text-align:left">25.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP II F 32</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SC</td>
+<td style="text-align:left">Sul</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">210</td>
+<td style="text-align:right">205</td>
+<td style="text-align:right">-186.637</td>
+<td style="text-align:right">396.637</td>
+<td style="text-align:right">396.637</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(12.5, 30.0]</td>
+<td style="text-align:left">(0.51, 0.54]</td>
+<td style="text-align:left">(185.76, 192.0]</td>
+<td style="text-align:left">(343.0, 370.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-470</td>
+<td style="text-align:right">54</td>
+<td style="text-align:right">-834.664</td>
+<td style="text-align:right">364.664</td>
+<td style="text-align:right">364.664</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">10</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">56 dias ar 50% umidade</td>
+<td style="text-align:left">Laboratório</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-760</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-317.943</td>
+<td style="text-align:right">-442.057</td>
+<td style="text-align:right">442.057</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">8</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-910</td>
+<td style="text-align:right">155</td>
+<td style="text-align:right">-385.138</td>
+<td style="text-align:right">-524.862</td>
+<td style="text-align:right">524.862</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+<tr>
+<td style="text-align:right">0.61</td>
+<td style="text-align:right">330</td>
+<td style="text-align:right">201.3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:left">0.000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">1344</td>
+<td style="text-align:left">CP V ARI</td>
+<td style="text-align:left">7 dias úmida / 56 dias ar 50% umidade</td>
+<td style="text-align:left">Campo</td>
+<td style="text-align:left">SP</td>
+<td style="text-align:left">Sudeste</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-1000</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">-474.36</td>
+<td style="text-align:right">-525.64</td>
+<td style="text-align:right">525.64</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">(-0.001, 10.0]</td>
+<td style="text-align:left">(0.55, 0.63]</td>
+<td style="text-align:left">(192.0, 219.6]</td>
+<td style="text-align:left">(310.999, 336.0]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rel-4-figura-gerada">4. Figura gerada</h2>
+<h3 id="rel-figura-1-erro-m-dio-por-idade">Figura 1 — Erro médio por idade</h3>
+<p>A Figura 1 mostra o erro médio em ordem temporal. Ela ajuda a verificar em quais idades a predição é mais incerta.</p>
+<p class="report-image"><img alt="Figura 1 — Erro médio por idade" loading="lazy" src="../assets/img/experimento_06_analise_erros/erro_medio_por_idade.png"/></p>
+<h2 id="rel-5-interpreta-o-dos-resultados">5. Interpretação dos resultados</h2>
+<p>A análise por grupos torna a avaliação do modelo mais transparente. Em vez de depender apenas de métricas globais, o experimento mostra onde o sistema preditivo é mais robusto e onde requer cautela.</p>
+<h2 id="rel-6-conclus-o-do-experimento">6. Conclusão do experimento</h2>
+<p>O Experimento 6 identifica os grupos e idades em que a predição é mais difícil. Essa informação orienta a interpretação do modelo final e evita uma defesa baseada apenas em métricas agregadas.</p>
+</div>
+</section><div class="exp-nav"><a class="btn secondary" href="experimento-05.html">← Experimento 05</a><a class="btn" href="experimento-07.html">Experimento 07 →</a></div></main><footer><div class="wrap"><p>Material complementar da pesquisa de mestrado em Engenharia Civil. Os resultados devem ser interpretados dentro do domínio representado pela base experimental.</p></div></footer><script src="../assets/js/main.js"></script></body></html>

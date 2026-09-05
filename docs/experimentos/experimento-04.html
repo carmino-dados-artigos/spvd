@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Repositório científico complementar da dissertação sobre predição da variação dimensional de concretos com macrofibras e aditivos compensadores de retração." name="description"/><title>Experimento 04 · Sistema Preditivo de Variação Dimensional</title><link href="../assets/css/style.css" rel="stylesheet"/></head><body><header class="top"><div class="wrap brand"><div><strong>Sistema Preditivo de Variação Dimensional</strong><span>Repositório científico complementar</span></div><button aria-label="Abrir menu" class="nav-toggle">☰</button></div><nav class="wrap nav"><a href="../index.html">Início</a><a href="../metodologia.html">Pesquisa</a><a href="../dados.html">Dados</a><a href="../experimentos/index.html">Experimentos</a><a href="../resultados.html">Resultados</a><a href="../prototipo.html">Protótipo</a><a href="../rastreabilidade.html">Rastreabilidade</a><a href="../downloads.html">Downloads</a></nav></header><main class="wrap"><div class="eyebrow">Experimento 04</div><h1>Comparação de modelos preditivos</h1><p class="lead">Comparar Ridge, Random Forest, Gradient Boosting e Extra Trees sob a mesma validação agrupada.</p><div class="grid"><div class="card span-6"><h3>Resultado principal</h3><p>Gradient Boosting apresentou o menor RMSE (86,096 µm/m), enquanto Extra Trees apresentou a maior acurácia do sinal (0,884).</p></div><div class="card span-6"><h3>Decisão metodológica</h3><p>Não selecionar o modelo por uma única métrica; considerar magnitude do erro e preservação do sinal.</p></div></div><h2>Evidência tabular</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>MAE</th><th>RMSE</th><th>R2</th><th>acuracia_sinal</th><th>modelo</th><th>MAE_cv_medio</th><th>MAE_cv_desvio</th><th>RMSE_cv_medio</th><th>RMSE_cv_desvio</th><th>R2_cv_medio</th><th>R2_cv_desvio</th></tr></thead><tbody><tr><td>48.32250793628296</td><td>86.0959466394375</td><td>0.7917660921433463</td><td>0.8030407740152039</td><td>Gradient Boosting</td><td>48.328470634670595</td><td>5.813302641687019</td><td>84.06134550400066</td><td>18.696831625712008</td><td>0.7931329631292433</td><td>0.07660255037858223</td></tr><tr><td>48.440019879912754</td><td>86.23195418780527</td><td>0.7911076696661319</td><td>0.8838977194194886</td><td>Extra Trees</td><td>48.44605392274129</td><td>5.328860877540963</td><td>85.13593893940511</td><td>13.82008225163986</td><td>0.7923190805852203</td><td>0.05460698813440366</td></tr><tr><td>48.46804930342884</td><td>88.20842894106073</td><td>0.7814221184616822</td><td>0.856945404284727</td><td>Random Forest</td><td>48.473145240233656</td><td>4.317271055576712</td><td>87.46706356916032</td><td>11.51130716828334</td><td>0.7815627622080656</td><td>0.048608113566330456</td></tr><tr><td>63.16059650256423</td><td>96.15933292656446</td><td>0.7402420057495308</td><td>0.7940566689702834</td><td>Ridge</td><td>63.167093035239986</td><td>5.997610566667288</td><td>95.08962212804221</td><td>14.453926654414484</td><td>0.7422034576018918</td><td>0.06088588596275289</td></tr></tbody></table></div><div class="figure"><img alt="Resultado gráfico do experimento 04" src="../assets/img/experimento_04_comparacao_modelos/comparacao_rmse_modelos.png"/><div class="caption">Figura gerada pelo Experimento 04: comparacao_rmse_modelos.png</div></div><h2>Rastreabilidade</h2><p>Este experimento sustenta diretamente a seção <strong>4.4</strong> dos resultados parciais da dissertação.</p><div class="btns"><a class="btn secondary" href="../downloads/src/experimento_04_comparacao_modelos/experimento_04.py">Ver script</a><a class="btn secondary" href="../downloads/resultados/experimento_04_comparacao_modelos/comparacao_modelos.csv">Baixar tabela principal</a></div><section class="report-section" id="relatorio-detalhado">
+<div class="report-head">
+<div><div class="eyebrow">Resultados documentados</div><h2>Relatório detalhado do experimento</h2>
+<p class="lead">Conteúdo incorporado diretamente do relatório Markdown original do Experimento 04, preservando procedimentos, tabelas, resultados, interpretação e conclusão.</p></div>
+<div class="btns"><a class="btn secondary" href="../downloads/relatorios/experimentos/RELATORIO_experimento_04_comparacao_modelos.md">Baixar relatório .md</a></div>
+</div>
+<div class="report-content">
+<h2 id="rel-1-caracteriza-o-e-finalidade">1. Caracterização e finalidade</h2>
+<p>Este experimento compara diferentes algoritmos de regressão para predizer a variação dimensional longitudinal com sinal. A finalidade é verificar se modelos não lineares superam o baseline linear do Experimento 3.</p>
+<h2 id="rel-2-modelos-avaliados">2. Modelos avaliados</h2>
+<p>Foram comparados modelos lineares e baseados em árvores. Todos utilizaram a mesma base longitudinal, a mesma variável de resposta <code>epsilon_t</code> e validação por grupo baseada em <code>amostra_id</code>.</p>
+<h2 id="rel-3-procedimento-executado">3. Procedimento executado</h2>
+<p>Cada modelo foi inserido em um pipeline com pré-processamento de variáveis numéricas e categóricas. As métricas foram calculadas por validação cruzada agrupada, e as predições de cada modelo foram exportadas para análise comparativa.</p>
+<h2 id="rel-4-tabelas-geradas">4. Tabelas geradas</h2>
+<h3 id="rel-tabela-1-compara-o-global-dos-modelos">Tabela 1 — Comparação global dos modelos</h3>
+<p>A Tabela 1 apresenta a comparação entre os modelos. O ranqueamento principal deve considerar o RMSE, pois ele penaliza erros maiores. Também devem ser observados MAE, R² e acurácia do sinal para avaliar simultaneamente magnitude e sentido físico da predição.</p>
+<p>Arquivo de origem: <code>experimento_04_comparacao_modelos/resultados/comparacao_modelos.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">MAE</th>
+<th style="text-align:right">RMSE</th>
+<th style="text-align:right">R2</th>
+<th style="text-align:right">acuracia_sinal</th>
+<th style="text-align:left">modelo</th>
+<th style="text-align:right">MAE_cv_medio</th>
+<th style="text-align:right">MAE_cv_desvio</th>
+<th style="text-align:right">RMSE_cv_medio</th>
+<th style="text-align:right">RMSE_cv_desvio</th>
+<th style="text-align:right">R2_cv_medio</th>
+<th style="text-align:right">R2_cv_desvio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">48.323</td>
+<td style="text-align:right">86.096</td>
+<td style="text-align:right">0.792</td>
+<td style="text-align:right">0.803</td>
+<td style="text-align:left">Gradient Boosting</td>
+<td style="text-align:right">48.328</td>
+<td style="text-align:right">5.813</td>
+<td style="text-align:right">84.061</td>
+<td style="text-align:right">18.697</td>
+<td style="text-align:right">0.793</td>
+<td style="text-align:right">0.077</td>
+</tr>
+<tr>
+<td style="text-align:right">48.44</td>
+<td style="text-align:right">86.232</td>
+<td style="text-align:right">0.791</td>
+<td style="text-align:right">0.884</td>
+<td style="text-align:left">Extra Trees</td>
+<td style="text-align:right">48.446</td>
+<td style="text-align:right">5.329</td>
+<td style="text-align:right">85.136</td>
+<td style="text-align:right">13.82</td>
+<td style="text-align:right">0.792</td>
+<td style="text-align:right">0.055</td>
+</tr>
+<tr>
+<td style="text-align:right">48.468</td>
+<td style="text-align:right">88.208</td>
+<td style="text-align:right">0.781</td>
+<td style="text-align:right">0.857</td>
+<td style="text-align:left">Random Forest</td>
+<td style="text-align:right">48.473</td>
+<td style="text-align:right">4.317</td>
+<td style="text-align:right">87.467</td>
+<td style="text-align:right">11.511</td>
+<td style="text-align:right">0.782</td>
+<td style="text-align:right">0.049</td>
+</tr>
+<tr>
+<td style="text-align:right">63.161</td>
+<td style="text-align:right">96.159</td>
+<td style="text-align:right">0.74</td>
+<td style="text-align:right">0.794</td>
+<td style="text-align:left">Ridge</td>
+<td style="text-align:right">63.167</td>
+<td style="text-align:right">5.998</td>
+<td style="text-align:right">95.09</td>
+<td style="text-align:right">14.454</td>
+<td style="text-align:right">0.742</td>
+<td style="text-align:right">0.061</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-2-predi-es-por-modelo">Tabela 2 — Predições por modelo</h3>
+<p>A Tabela 2 reúne as predições dos modelos comparados para cada registro longitudinal. Ela permite comparar, caso a caso, o erro produzido por cada algoritmo e identificar padrões em que determinado modelo se comporta melhor ou pior.</p>
+<p>Arquivo de origem: <code>experimento_04_comparacao_modelos/resultados/predicoes_por_modelo.csv</code></p>
+<p>A tabela completa possui <strong>1447 registros</strong> e <strong>11 colunas</strong>. Para manter a leitura do relatório viável, apresenta-se abaixo uma visualização parcial, mantendo o arquivo CSV completo na pasta de resultados.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">amostra_id</th>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">epsilon_t</th>
+<th style="text-align:right">pred_Ridge</th>
+<th style="text-align:right">erro_Ridge</th>
+<th style="text-align:right">pred_Random Forest</th>
+<th style="text-align:right">erro_Random Forest</th>
+<th style="text-align:right">pred_Gradient Boosting</th>
+<th style="text-align:right">erro_Gradient Boosting</th>
+<th style="text-align:right">pred_Extra Trees</th>
+<th style="text-align:right">erro_Extra Trees</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">32.305</td>
+<td style="text-align:right">32.305</td>
+<td style="text-align:right">0.211</td>
+<td style="text-align:right">0.211</td>
+<td style="text-align:right">17.273</td>
+<td style="text-align:right">17.273</td>
+<td style="text-align:right">0.09</td>
+<td style="text-align:right">0.09</td>
+</tr>
+<tr>
+<td style="text-align:right">138</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-88.521</td>
+<td style="text-align:right">88.521</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-16.132</td>
+<td style="text-align:right">16.132</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">41</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">38.203</td>
+<td style="text-align:right">38.203</td>
+<td style="text-align:right">-0.66</td>
+<td style="text-align:right">0.66</td>
+<td style="text-align:right">14.344</td>
+<td style="text-align:right">14.344</td>
+<td style="text-align:right">0.27</td>
+<td style="text-align:right">0.27</td>
+</tr>
+<tr>
+<td style="text-align:right">139</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">88.916</td>
+<td style="text-align:right">88.916</td>
+<td style="text-align:right">-0.067</td>
+<td style="text-align:right">0.067</td>
+<td style="text-align:right">29.159</td>
+<td style="text-align:right">29.159</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">140</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-91.485</td>
+<td style="text-align:right">91.485</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-22.674</td>
+<td style="text-align:right">22.674</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">40</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">88.916</td>
+<td style="text-align:right">88.916</td>
+<td style="text-align:right">-0.067</td>
+<td style="text-align:right">0.067</td>
+<td style="text-align:right">29.159</td>
+<td style="text-align:right">29.159</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">141</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">70.388</td>
+<td style="text-align:right">70.388</td>
+<td style="text-align:right">0.15</td>
+<td style="text-align:right">0.15</td>
+<td style="text-align:right">15.789</td>
+<td style="text-align:right">15.789</td>
+<td style="text-align:right">-0.05</td>
+<td style="text-align:right">0.05</td>
+</tr>
+<tr>
+<td style="text-align:right">137</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">28.276</td>
+<td style="text-align:right">28.276</td>
+<td style="text-align:right">1.375</td>
+<td style="text-align:right">1.375</td>
+<td style="text-align:right">5.364</td>
+<td style="text-align:right">5.364</td>
+<td style="text-align:right">0.19</td>
+<td style="text-align:right">0.19</td>
+</tr>
+<tr>
+<td style="text-align:right">39</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-129.466</td>
+<td style="text-align:right">129.466</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-25.901</td>
+<td style="text-align:right">25.901</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">143</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">43.646</td>
+<td style="text-align:right">43.646</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">8.693</td>
+<td style="text-align:right">8.693</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">66.696</td>
+<td style="text-align:right">66.696</td>
+<td style="text-align:right">0.577</td>
+<td style="text-align:right">0.577</td>
+<td style="text-align:right">12.964</td>
+<td style="text-align:right">12.964</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">144</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-103.843</td>
+<td style="text-align:right">103.843</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-19.851</td>
+<td style="text-align:right">19.851</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">145</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">106.164</td>
+<td style="text-align:right">106.164</td>
+<td style="text-align:right">0.283</td>
+<td style="text-align:right">0.283</td>
+<td style="text-align:right">29.159</td>
+<td style="text-align:right">29.159</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">37</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-74.512</td>
+<td style="text-align:right">74.512</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-22.403</td>
+<td style="text-align:right">22.403</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">146</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-60.599</td>
+<td style="text-align:right">60.599</td>
+<td style="text-align:right">14.727</td>
+<td style="text-align:right">14.727</td>
+<td style="text-align:right">-1.849</td>
+<td style="text-align:right">1.849</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">142</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-108.743</td>
+<td style="text-align:right">108.743</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-32.801</td>
+<td style="text-align:right">32.801</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">42</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-77.575</td>
+<td style="text-align:right">77.575</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-16.132</td>
+<td style="text-align:right">16.132</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">136</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-110.012</td>
+<td style="text-align:right">110.012</td>
+<td style="text-align:right">-3.506</td>
+<td style="text-align:right">3.506</td>
+<td style="text-align:right">-12.194</td>
+<td style="text-align:right">12.194</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">43</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">48.468</td>
+<td style="text-align:right">48.468</td>
+<td style="text-align:right">7.07</td>
+<td style="text-align:right">7.07</td>
+<td style="text-align:right">13.213</td>
+<td style="text-align:right">13.213</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">126</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-53.399</td>
+<td style="text-align:right">53.399</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-6.806</td>
+<td style="text-align:right">6.806</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">48</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-79.949</td>
+<td style="text-align:right">79.949</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-16.132</td>
+<td style="text-align:right">16.132</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">127</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">18.381</td>
+<td style="text-align:right">18.381</td>
+<td style="text-align:right">0.028</td>
+<td style="text-align:right">0.028</td>
+<td style="text-align:right">13.213</td>
+<td style="text-align:right">13.213</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">128</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-108.644</td>
+<td style="text-align:right">108.644</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-22.674</td>
+<td style="text-align:right">22.674</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">47</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">60.28</td>
+<td style="text-align:right">60.28</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">17.562</td>
+<td style="text-align:right">17.562</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">129</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">129.691</td>
+<td style="text-align:right">129.691</td>
+<td style="text-align:right">0.491</td>
+<td style="text-align:right">0.491</td>
+<td style="text-align:right">21.173</td>
+<td style="text-align:right">21.173</td>
+<td style="text-align:right">0.265</td>
+<td style="text-align:right">0.265</td>
+</tr>
+<tr>
+<td style="text-align:right">106</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-430</td>
+<td style="text-align:right">-398.106</td>
+<td style="text-align:right">31.894</td>
+<td style="text-align:right">-360.957</td>
+<td style="text-align:right">69.043</td>
+<td style="text-align:right">-366.304</td>
+<td style="text-align:right">63.696</td>
+<td style="text-align:right">-328.082</td>
+<td style="text-align:right">101.918</td>
+</tr>
+<tr>
+<td style="text-align:right">59</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-460</td>
+<td style="text-align:right">-434.547</td>
+<td style="text-align:right">25.453</td>
+<td style="text-align:right">-452.914</td>
+<td style="text-align:right">7.086</td>
+<td style="text-align:right">-418.917</td>
+<td style="text-align:right">41.083</td>
+<td style="text-align:right">-448.098</td>
+<td style="text-align:right">11.902</td>
+</tr>
+<tr>
+<td style="text-align:right">168</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-390</td>
+<td style="text-align:right">-451.99</td>
+<td style="text-align:right">61.99</td>
+<td style="text-align:right">-429.327</td>
+<td style="text-align:right">39.327</td>
+<td style="text-align:right">-422.652</td>
+<td style="text-align:right">32.652</td>
+<td style="text-align:right">-467.728</td>
+<td style="text-align:right">77.728</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-590</td>
+<td style="text-align:right">-444.076</td>
+<td style="text-align:right">145.924</td>
+<td style="text-align:right">-425.618</td>
+<td style="text-align:right">164.382</td>
+<td style="text-align:right">-421.521</td>
+<td style="text-align:right">168.479</td>
+<td style="text-align:right">-431.286</td>
+<td style="text-align:right">158.714</td>
+</tr>
+<tr>
+<td style="text-align:right">107</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-360</td>
+<td style="text-align:right">-341.469</td>
+<td style="text-align:right">18.531</td>
+<td style="text-align:right">-415.523</td>
+<td style="text-align:right">55.523</td>
+<td style="text-align:right">-322.837</td>
+<td style="text-align:right">37.163</td>
+<td style="text-align:right">-378.505</td>
+<td style="text-align:right">18.505</td>
+</tr>
+<tr>
+<td style="text-align:right">58</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-320</td>
+<td style="text-align:right">-373.751</td>
+<td style="text-align:right">53.751</td>
+<td style="text-align:right">-323.005</td>
+<td style="text-align:right">3.005</td>
+<td style="text-align:right">-296.194</td>
+<td style="text-align:right">23.806</td>
+<td style="text-align:right">-308.33</td>
+<td style="text-align:right">11.67</td>
+</tr>
+<tr>
+<td style="text-align:right">167</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-260</td>
+<td style="text-align:right">-261.005</td>
+<td style="text-align:right">1.005</td>
+<td style="text-align:right">-277.72</td>
+<td style="text-align:right">17.72</td>
+<td style="text-align:right">-280.616</td>
+<td style="text-align:right">20.616</td>
+<td style="text-align:right">-275.257</td>
+<td style="text-align:right">15.257</td>
+</tr>
+<tr>
+<td style="text-align:right">108</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-290</td>
+<td style="text-align:right">-248.764</td>
+<td style="text-align:right">41.236</td>
+<td style="text-align:right">-304.442</td>
+<td style="text-align:right">14.442</td>
+<td style="text-align:right">-277.605</td>
+<td style="text-align:right">12.395</td>
+<td style="text-align:right">-308.993</td>
+<td style="text-align:right">18.993</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">-281.263</td>
+<td style="text-align:right">68.737</td>
+<td style="text-align:right">-350.765</td>
+<td style="text-align:right">0.765</td>
+<td style="text-align:right">-296.509</td>
+<td style="text-align:right">53.491</td>
+<td style="text-align:right">-375.682</td>
+<td style="text-align:right">25.682</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">-288.252</td>
+<td style="text-align:right">61.748</td>
+<td style="text-align:right">-335.362</td>
+<td style="text-align:right">14.638</td>
+<td style="text-align:right">-296.377</td>
+<td style="text-align:right">53.623</td>
+<td style="text-align:right">-338.569</td>
+<td style="text-align:right">11.431</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Observação: o CSV completo correspondente permanece disponível na pasta de resultados do experimento.</p>
+</blockquote>
+<h2 id="rel-5-figura-gerada">5. Figura gerada</h2>
+<h3 id="rel-figura-1-compara-o-dos-modelos-por-rmse">Figura 1 — Comparação dos modelos por RMSE</h3>
+<p>A Figura 1 apresenta o RMSE de cada modelo. Como RMSE é uma métrica de erro, a menor barra indica o melhor desempenho global.</p>
+<p class="report-image"><img alt="Figura 1 — Comparação dos modelos por RMSE" loading="lazy" src="../assets/img/experimento_04_comparacao_modelos/comparacao_rmse_modelos.png"/></p>
+<h2 id="rel-6-interpreta-o-dos-resultados">6. Interpretação dos resultados</h2>
+<p>O melhor modelo pelo critério de RMSE foi <code>Gradient Boosting</code>, com RMSE de 86.096 µm/m, MAE de 48.323 µm/m, R² de 0.792 e acurácia do sinal de 0.803. Esse resultado indica que a relação entre variáveis de entrada e variação dimensional tem componente não linear relevante.</p>
+<h2 id="rel-7-conclus-o-do-experimento">7. Conclusão do experimento</h2>
+<p>O Experimento 4 identifica o desempenho relativo dos algoritmos e orienta a escolha dos modelos mais promissores para as etapas seguintes. A comparação sustenta a continuidade com modelos de maior capacidade preditiva, sem abandonar a análise de sinal.</p>
+</div>
+</section><div class="exp-nav"><a class="btn secondary" href="experimento-03.html">← Experimento 03</a><a class="btn" href="experimento-05.html">Experimento 05 →</a></div></main><footer><div class="wrap"><p>Material complementar da pesquisa de mestrado em Engenharia Civil. Os resultados devem ser interpretados dentro do domínio representado pela base experimental.</p></div></footer><script src="../assets/js/main.js"></script></body></html>

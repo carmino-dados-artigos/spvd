@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Repositório científico complementar da dissertação sobre predição da variação dimensional de concretos com macrofibras e aditivos compensadores de retração." name="description"/><title>Experimento 09 · Sistema Preditivo de Variação Dimensional</title><link href="../assets/css/style.css" rel="stylesheet"/></head><body><header class="top"><div class="wrap brand"><div><strong>Sistema Preditivo de Variação Dimensional</strong><span>Repositório científico complementar</span></div><button aria-label="Abrir menu" class="nav-toggle">☰</button></div><nav class="wrap nav"><a href="../index.html">Início</a><a href="../metodologia.html">Pesquisa</a><a href="../dados.html">Dados</a><a href="../experimentos/index.html">Experimentos</a><a href="../resultados.html">Resultados</a><a href="../prototipo.html">Protótipo</a><a href="../rastreabilidade.html">Rastreabilidade</a><a href="../downloads.html">Downloads</a></nav></header><main class="wrap"><div class="eyebrow">Experimento 09</div><h1>Protótipo preditivo longitudinal</h1><p class="lead">Transformar a sequência experimental em uma saída operacional capaz de estimar ε(t) nas sete idades.</p><div class="grid"><div class="card span-6"><h3>Resultado principal</h3><p>O protótipo atual apresenta MAE 62,545 µm/m, RMSE 96,080 µm/m, R² 0,741 e acurácia do sinal 0,797.</p></div><div class="card span-6"><h3>Decisão metodológica</h3><p>Tratar o protótipo como implementação funcional parcial até alinhar a configuração do modelo final com a seleção global.</p></div></div><h2>Evidência tabular</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>MAE</th><th>RMSE</th><th>R2</th><th>acuracia_sinal</th><th>erro_mediano_absoluto</th><th>erro_percentil_75</th><th>erro_percentil_90</th></tr></thead><tbody><tr><td>62.54508284883887</td><td>96.08032750595626</td><td>0.7406686696689615</td><td>0.796821008984105</td><td>42.614779477339624</td><td>76.1345414615389</td><td>123.39998748572734</td></tr></tbody></table></div><div class="figure"><img alt="Resultado gráfico do experimento 09" src="../assets/img/experimento_09_prototipo_longitudinal/exemplo_curva_prevista.png"/><div class="caption">Figura gerada pelo Experimento 09: exemplo_curva_prevista.png</div></div><div class="callout warning"><strong>Ponto de atenção:</strong> o Experimento 8 obteve menor RMSE com RFE 15 + Ridge α=10,0, enquanto o protótipo atual usa RFE 15 + Ridge α=1,0. A configuração definitiva deve ser explicitamente consolidada antes da versão final da dissertação.</div><h2>Rastreabilidade</h2><p>Este experimento sustenta diretamente a seção <strong>4.9</strong> dos resultados parciais da dissertação.</p><div class="btns"><a class="btn secondary" href="../downloads/src/experimento_09_prototipo_longitudinal/experimento_09.py">Ver script</a><a class="btn secondary" href="../downloads/resultados/experimento_09_prototipo_longitudinal/metricas_prototipo_longitudinal.csv">Baixar tabela principal</a></div><section class="report-section" id="relatorio-detalhado">
+<div class="report-head">
+<div><div class="eyebrow">Resultados documentados</div><h2>Relatório detalhado do experimento</h2>
+<p class="lead">Conteúdo incorporado diretamente do relatório Markdown original do Experimento 09, preservando procedimentos, tabelas, resultados, interpretação e conclusão.</p></div>
+<div class="btns"><a class="btn secondary" href="../downloads/relatorios/experimentos/RELATORIO_experimento_09_prototipo_longitudinal.md">Baixar relatório .md</a></div>
+</div>
+<div class="report-content">
+<h2 id="rel-1-caracteriza-o-e-finalidade">1. Caracterização e finalidade</h2>
+<p>Este experimento consolida o sistema preditivo longitudinal. A finalidade é transformar a modelagem desenvolvida nos experimentos anteriores em um protótipo operacional capaz de estimar a curva de variação dimensional para novos traços.</p>
+<p>Diferentemente dos experimentos anteriores, este experimento não tem apenas função comparativa; ele organiza o modelo final, avalia seu desempenho, salva o artefato treinado e gera exemplo de predição por idade.</p>
+<h2 id="rel-2-vari-vel-de-resposta-e-sa-da-operacional">2. Variável de resposta e saída operacional</h2>
+<p>A saída principal é <code>epsilon_t</code>, isto é, a variação dimensional prevista para cada idade. O protótipo também classifica o sinal previsto como retração, expansão ou estabilidade e calcula faixas aproximadas de erro.</p>
+<h2 id="rel-3-procedimento-executado">3. Procedimento executado</h2>
+<p>O modelo final foi avaliado por validação cruzada agrupada, com cálculo de métricas globais, resíduos, erro absoluto, acurácia do sinal e percentis de erro. Em seguida, o modelo foi treinado na base completa e salvo como arquivo <code>.joblib</code>.</p>
+<h2 id="rel-4-tabelas-geradas">4. Tabelas geradas</h2>
+<h3 id="rel-tabela-1-m-tricas-do-prot-tipo-longitudinal">Tabela 1 — Métricas do protótipo longitudinal</h3>
+<p>A Tabela 1 apresenta as métricas finais do protótipo: MAE, RMSE, R², acurácia do sinal, erro mediano absoluto e percentis 75 e 90 do erro. Os percentis permitem comunicar uma faixa aproximada de incerteza.</p>
+<p>Arquivo de origem: <code>experimento_09_prototipo_longitudinal/resultados/metricas_prototipo_longitudinal.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">MAE</th>
+<th style="text-align:right">RMSE</th>
+<th style="text-align:right">R2</th>
+<th style="text-align:right">acuracia_sinal</th>
+<th style="text-align:right">erro_mediano_absoluto</th>
+<th style="text-align:right">erro_percentil_75</th>
+<th style="text-align:right">erro_percentil_90</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">62.545</td>
+<td style="text-align:right">96.08</td>
+<td style="text-align:right">0.741</td>
+<td style="text-align:right">0.797</td>
+<td style="text-align:right">42.615</td>
+<td style="text-align:right">76.135</td>
+<td style="text-align:right">123.4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-2-avalia-o-do-prot-tipo-por-registro">Tabela 2 — Avaliação do protótipo por registro</h3>
+<p>A Tabela 2 apresenta a avaliação fora da amostra para cada registro longitudinal. Ela contém valor real, valor previsto, resíduo, erro absoluto e sinal real e previsto. É a tabela principal para auditoria do desempenho do protótipo.</p>
+<p>Arquivo de origem: <code>experimento_09_prototipo_longitudinal/resultados/avaliacao_prototipo_longitudinal.csv</code></p>
+<p>A tabela completa possui <strong>1447 registros</strong> e <strong>9 colunas</strong>. Para manter a leitura do relatório viável, apresenta-se abaixo uma visualização parcial, mantendo o arquivo CSV completo na pasta de resultados.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">amostra_id</th>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">idade_dias</th>
+<th style="text-align:right">epsilon_t</th>
+<th style="text-align:right">epsilon_previsto</th>
+<th style="text-align:right">residuo</th>
+<th style="text-align:right">erro_absoluto</th>
+<th style="text-align:left">sinal_real</th>
+<th style="text-align:left">sinal_previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">61.124</td>
+<td style="text-align:right">-61.124</td>
+<td style="text-align:right">61.124</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">138</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-85.677</td>
+<td style="text-align:right">85.677</td>
+<td style="text-align:right">85.677</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">41</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">55.069</td>
+<td style="text-align:right">-55.069</td>
+<td style="text-align:right">55.069</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">139</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">115.351</td>
+<td style="text-align:right">-115.351</td>
+<td style="text-align:right">115.351</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">140</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-83.261</td>
+<td style="text-align:right">83.261</td>
+<td style="text-align:right">83.261</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">40</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">115.351</td>
+<td style="text-align:right">-115.351</td>
+<td style="text-align:right">115.351</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">141</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">52.533</td>
+<td style="text-align:right">-52.533</td>
+<td style="text-align:right">52.533</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">137</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">29.193</td>
+<td style="text-align:right">-29.193</td>
+<td style="text-align:right">29.193</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">39</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-85.882</td>
+<td style="text-align:right">85.882</td>
+<td style="text-align:right">85.882</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">143</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">43.6</td>
+<td style="text-align:right">-43.6</td>
+<td style="text-align:right">43.6</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">76.289</td>
+<td style="text-align:right">-76.289</td>
+<td style="text-align:right">76.289</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">144</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-85.709</td>
+<td style="text-align:right">85.709</td>
+<td style="text-align:right">85.709</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">145</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">96.06</td>
+<td style="text-align:right">-96.06</td>
+<td style="text-align:right">96.06</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">37</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-69.316</td>
+<td style="text-align:right">69.316</td>
+<td style="text-align:right">69.316</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">146</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-83.859</td>
+<td style="text-align:right">83.859</td>
+<td style="text-align:right">83.859</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">142</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-69.348</td>
+<td style="text-align:right">69.348</td>
+<td style="text-align:right">69.348</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">42</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-85.564</td>
+<td style="text-align:right">85.564</td>
+<td style="text-align:right">85.564</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">136</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-69.015</td>
+<td style="text-align:right">69.015</td>
+<td style="text-align:right">69.015</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">43</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">62.53</td>
+<td style="text-align:right">-62.53</td>
+<td style="text-align:right">62.53</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">126</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-85.859</td>
+<td style="text-align:right">85.859</td>
+<td style="text-align:right">85.859</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">48</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-80.262</td>
+<td style="text-align:right">80.262</td>
+<td style="text-align:right">80.262</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">127</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">56.668</td>
+<td style="text-align:right">-56.668</td>
+<td style="text-align:right">56.668</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">128</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-86.498</td>
+<td style="text-align:right">86.498</td>
+<td style="text-align:right">86.498</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">47</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">68.067</td>
+<td style="text-align:right">-68.067</td>
+<td style="text-align:right">68.067</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">129</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">106.056</td>
+<td style="text-align:right">-106.056</td>
+<td style="text-align:right">106.056</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">106</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-430</td>
+<td style="text-align:right">-444.462</td>
+<td style="text-align:right">14.462</td>
+<td style="text-align:right">14.462</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">59</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-460</td>
+<td style="text-align:right">-433.128</td>
+<td style="text-align:right">-26.872</td>
+<td style="text-align:right">26.872</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">168</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-390</td>
+<td style="text-align:right">-461.631</td>
+<td style="text-align:right">71.631</td>
+<td style="text-align:right">71.631</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-590</td>
+<td style="text-align:right">-465.703</td>
+<td style="text-align:right">-124.297</td>
+<td style="text-align:right">124.297</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">107</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-360</td>
+<td style="text-align:right">-369.698</td>
+<td style="text-align:right">9.698</td>
+<td style="text-align:right">9.698</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">58</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-320</td>
+<td style="text-align:right">-340.893</td>
+<td style="text-align:right">20.893</td>
+<td style="text-align:right">20.893</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">167</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-260</td>
+<td style="text-align:right">-254.481</td>
+<td style="text-align:right">-5.519</td>
+<td style="text-align:right">5.519</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">108</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-290</td>
+<td style="text-align:right">-270.28</td>
+<td style="text-align:right">-19.72</td>
+<td style="text-align:right">19.72</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">-282.06</td>
+<td style="text-align:right">-67.94</td>
+<td style="text-align:right">67.94</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">-285.742</td>
+<td style="text-align:right">-64.258</td>
+<td style="text-align:right">64.258</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Observação: o CSV completo correspondente permanece disponível na pasta de resultados do experimento.</p>
+</blockquote>
+<h3 id="rel-tabela-3-exemplo-de-predi-o-de-curva-para-novo-tra-o">Tabela 3 — Exemplo de predição de curva para novo traço</h3>
+<p>A Tabela 3 apresenta um exemplo de saída operacional do protótipo. Para cada idade, são fornecidos o valor previsto de <code>epsilon_t</code>, o sinal previsto e a faixa aproximada baseada no MAE.</p>
+<p>Arquivo de origem: <code>experimento_09_prototipo_longitudinal/resultados/exemplo_predicao_curva.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">idade_dias</th>
+<th style="text-align:right">epsilon_t_previsto</th>
+<th style="text-align:left">sinal_previsto</th>
+<th style="text-align:right">faixa_mae_min</th>
+<th style="text-align:right">faixa_mae_max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">49.676</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:right">-12.869</td>
+<td style="text-align:right">112.221</td>
+</tr>
+<tr>
+<td style="text-align:left">1 dia</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">45.209</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:right">-17.336</td>
+<td style="text-align:right">107.754</td>
+</tr>
+<tr>
+<td style="text-align:left">3 dias</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">27.341</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:right">-35.204</td>
+<td style="text-align:right">89.886</td>
+</tr>
+<tr>
+<td style="text-align:left">7 dias</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">46.455</td>
+<td style="text-align:left">expansao</td>
+<td style="text-align:right">-16.09</td>
+<td style="text-align:right">109</td>
+</tr>
+<tr>
+<td style="text-align:left">14 dias</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">-70.933</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:right">-133.478</td>
+<td style="text-align:right">-8.388</td>
+</tr>
+<tr>
+<td style="text-align:left">28 dias</td>
+<td style="text-align:right">28</td>
+<td style="text-align:right">-196.009</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:right">-258.554</td>
+<td style="text-align:right">-133.464</td>
+</tr>
+<tr>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-336.995</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:right">-399.54</td>
+<td style="text-align:right">-274.45</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rel-5-figura-gerada">5. Figura gerada</h2>
+<h3 id="rel-figura-1-exemplo-de-curva-prevista">Figura 1 — Exemplo de curva prevista</h3>
+<p>A Figura 1 representa graficamente a curva prevista de variação dimensional para um novo traço. Essa figura demonstra a passagem do modelo estatístico para uma saída interpretável no formato de curva temporal.</p>
+<p class="report-image"><img alt="Figura 1 — Exemplo de curva prevista" loading="lazy" src="../assets/img/experimento_09_prototipo_longitudinal/exemplo_curva_prevista.png"/></p>
+<h2 id="rel-6-interpreta-o-dos-resultados">6. Interpretação dos resultados</h2>
+<p>O Experimento 9 demonstra que a sequência experimental pode ser convertida em um protótipo de uso prático. O modelo passa a retornar uma previsão por idade, e não apenas um número isolado. Essa estrutura está mais alinhada ao objetivo de predizer a variação dimensional ao longo do tempo.</p>
+<p>A acurácia do sinal indica se o protótipo acerta o sentido físico da deformação. As métricas MAE e RMSE indicam o erro de magnitude. Os percentis de erro ajudam a comunicar incerteza de forma mais prudente.</p>
+<h2 id="rel-7-limita-o-objetiva">7. Limitação objetiva</h2>
+<p>Neste experimento foram calculadas métricas de regressão e acurácia do sinal, mas não foram geradas matriz de confusão, precision, recall e F1 por classe. Esses indicadores podem ser acrescentados em uma versão posterior caso se deseje aprofundar a avaliação categórica entre retração, expansão e estabilidade.</p>
+<h2 id="rel-8-conclus-o-do-experimento">8. Conclusão do experimento</h2>
+<p>O Experimento 9 consolida o sistema preditivo longitudinal. O resultado final é um protótipo capaz de estimar a variação dimensional com sinal em diferentes idades, preservando a interpretação física entre retração, expansão e estabilidade.</p>
+</div>
+</section><div class="exp-nav"><a class="btn secondary" href="experimento-08.html">← Experimento 08</a><a class="btn" href="../resultados.html">Resultados consolidados →</a></div></main><footer><div class="wrap"><p>Material complementar da pesquisa de mestrado em Engenharia Civil. Os resultados devem ser interpretados dentro do domínio representado pela base experimental.</p></div></footer><script src="../assets/js/main.js"></script></body></html>

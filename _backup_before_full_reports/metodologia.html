@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description"
+        content="Repositório científico complementar da dissertação sobre predição da variação dimensional de concretos com macrofibras e aditivos compensadores de retração.">
+    <title>Pesquisa · Sistema Preditivo de Variação Dimensional</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header class="top">
+        <div class="wrap brand">
+            <div><strong>Sistema Preditivo de Variação Dimensional</strong><span>Repositório científico
+                    complementar</span></div><button class="nav-toggle" aria-label="Abrir menu">☰</button>
+        </div>
+        <nav class="wrap nav"><a href="index.html">Início</a><a href="metodologia.html">Pesquisa</a><a
+                href="dados.html">Dados</a><a href="experimentos/index.html">Experimentos</a><a
+                href="resultados.html">Resultados</a><a href="prototipo.html">Protótipo</a><a
+                href="rastreabilidade.html">Rastreabilidade</a><a href="downloads.html">Downloads</a></nav>
+    </header>
+    <main class="wrap">
+        <div class="eyebrow">Pesquisa</div>
+        <h1>Estrutura metodológica</h1>
+        <p class="lead">A pesquisa utiliza bases experimentais existentes e organiza a variação dimensional como uma
+            resposta longitudinal dependente da composição, das condições experimentais e da idade.</p>
+        <h2>Fluxo</h2>
+        <div class="callout">Base experimental → harmonização → estrutura longitudinal → validação agrupada → comparação
+            de modelos → análise de erros → seleção e ajuste → protótipo.</div>
+        <div class="grid">
+            <div class="card span-6">
+                <h3>Resposta longitudinal</h3>
+                <p><strong>ε(t)</strong> representa a variação dimensional em µm/m na idade <em>t</em>. A idade é
+                    explicitamente incorporada ao conjunto de dados.</p>
+            </div>
+            <div class="card span-6">
+                <h3>Validação</h3>
+                <p>A avaliação usa agrupamento por <code>amostra_id</code>, preservando todas as idades de uma mesma
+                    unidade experimental no mesmo grupo.</p>
+            </div>
+            <div class="card span-6">
+                <h3>Métricas</h3>
+                <p>MAE, RMSE, R² e acurácia do sinal são usadas de forma complementar. Na análise categórica também são
+                    empregados precision, recall e F1 macro.</p>
+            </div>
+            <div class="card span-6">
+                <h3>Limite de interpretação</h3>
+                <p>Resultados de seleção de atributos ou desempenho preditivo não constituem demonstração de causalidade
+                    física. As previsões devem permanecer dentro do domínio representado pela base.</p>
+            </div>
+        </div>
+        <h2>Documentação metodológica completa</h2>
+        <div class="btns"><a class="btn secondary" href="downloads/relatorios/CAPITULO_EXPERIMENTOS.pdf">Baixar
+                relatório consolidado (PDF)</a><a class="btn secondary"
+                href="downloads/relatorios/CAPITULO_EXPERIMENTOS.md">Baixar relatório consolidado (Markdown)</a></div>
+    </main>
+    <footer>
+        <div class="wrap">
+            <p>Material complementar da pesquisa de mestrado em Engenharia Civil. Os resultados devem ser interpretados
+                dentro do domínio representado pela base experimental.</p>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

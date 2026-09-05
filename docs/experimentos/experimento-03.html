@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Repositório científico complementar da dissertação sobre predição da variação dimensional de concretos com macrofibras e aditivos compensadores de retração." name="description"/><title>Experimento 03 · Sistema Preditivo de Variação Dimensional</title><link href="../assets/css/style.css" rel="stylesheet"/></head><body><header class="top"><div class="wrap brand"><div><strong>Sistema Preditivo de Variação Dimensional</strong><span>Repositório científico complementar</span></div><button aria-label="Abrir menu" class="nav-toggle">☰</button></div><nav class="wrap nav"><a href="../index.html">Início</a><a href="../metodologia.html">Pesquisa</a><a href="../dados.html">Dados</a><a href="../experimentos/index.html">Experimentos</a><a href="../resultados.html">Resultados</a><a href="../prototipo.html">Protótipo</a><a href="../rastreabilidade.html">Rastreabilidade</a><a href="../downloads.html">Downloads</a></nav></header><main class="wrap"><div class="eyebrow">Experimento 03</div><h1>Baseline com Ridge Regression</h1><p class="lead">Estabelecer uma referência linear regularizada para comparação com modelos de maior complexidade.</p><div class="grid"><div class="card span-6"><h3>Resultado principal</h3><p>MAE 63,161 µm/m; RMSE 96,159 µm/m; R² 0,740; acurácia do sinal 0,794.</p></div><div class="card span-6"><h3>Decisão metodológica</h3><p>Usar esse desempenho como baseline para os experimentos seguintes.</p></div></div><h2>Evidência tabular</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>MAE</th><th>RMSE</th><th>R2</th><th>acuracia_sinal</th></tr></thead><tbody><tr><td>63.16059650256423</td><td>96.15933292656446</td><td>0.7402420057495308</td><td>0.7940566689702834</td></tr></tbody></table></div><div class="figure"><img alt="Resultado gráfico do experimento 03" src="../assets/img/experimento_03_baseline_ridge/real_vs_previsto_baseline.png"/><div class="caption">Figura gerada pelo Experimento 03: real_vs_previsto_baseline.png</div></div><h2>Rastreabilidade</h2><p>Este experimento sustenta diretamente a seção <strong>4.3</strong> dos resultados parciais da dissertação.</p><div class="btns"><a class="btn secondary" href="../downloads/src/experimento_03_baseline_ridge/experimento_03.py">Ver script</a><a class="btn secondary" href="../downloads/resultados/experimento_03_baseline_ridge/metricas_baseline_ridge.csv">Baixar tabela principal</a></div><section class="report-section" id="relatorio-detalhado">
+<div class="report-head">
+<div><div class="eyebrow">Resultados documentados</div><h2>Relatório detalhado do experimento</h2>
+<p class="lead">Conteúdo incorporado diretamente do relatório Markdown original do Experimento 03, preservando procedimentos, tabelas, resultados, interpretação e conclusão.</p></div>
+<div class="btns"><a class="btn secondary" href="../downloads/relatorios/experimentos/RELATORIO_experimento_03_baseline_ridge.md">Baixar relatório .md</a></div>
+</div>
+<div class="report-content">
+<h2 id="rel-1-caracteriza-o-e-finalidade">1. Caracterização e finalidade</h2>
+<p>Este experimento estabelece um modelo de referência para a predição longitudinal da variação dimensional. A finalidade é obter um desempenho inicial com um algoritmo linear regularizado e interpretável, usando <code>Ridge Regression</code>.</p>
+<p>O modelo baseline serve como parâmetro mínimo de comparação para os experimentos seguintes. Modelos mais complexos só são metodologicamente justificáveis se melhorarem o erro, a explicação da variância ou a acurácia do sinal em relação a esse ponto de partida.</p>
+<h2 id="rel-2-vari-veis-utilizadas">2. Variáveis utilizadas</h2>
+<p>A variável de resposta é <code>epsilon_t</code>. As variáveis de entrada incluem dosagem, materiais, cura, local de ensaio, estado, região e idade.</p>
+<p>O experimento utiliza validação por grupo com <code>amostra_id</code>, evitando que idades da mesma amostra sejam simultaneamente usadas em treino e teste.</p>
+<h2 id="rel-3-procedimento-executado">3. Procedimento executado</h2>
+<p>Foi construído um pipeline com pré-processamento para variáveis numéricas e categóricas, seguido de Ridge Regression. O modelo foi avaliado por validação cruzada agrupada, gerando métricas globais, predições fora da amostra, resíduos e gráfico real versus previsto.</p>
+<h2 id="rel-4-tabelas-geradas">4. Tabelas geradas</h2>
+<h3 id="rel-tabela-1-m-tricas-do-modelo-baseline-ridge">Tabela 1 — Métricas do modelo baseline Ridge</h3>
+<p>A Tabela 1 apresenta as métricas globais do modelo baseline: MAE, RMSE, R² e acurácia do sinal. O MAE indica o erro médio em µm/m; o RMSE penaliza erros maiores; o R² indica a proporção de variabilidade explicada; e a acurácia do sinal verifica se o modelo acerta expansão, retração ou estabilidade.</p>
+<p>Arquivo de origem: <code>experimento_03_baseline_ridge/resultados/metricas_baseline_ridge.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">MAE</th>
+<th style="text-align:right">RMSE</th>
+<th style="text-align:right">R2</th>
+<th style="text-align:right">acuracia_sinal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">63.161</td>
+<td style="text-align:right">96.159</td>
+<td style="text-align:right">0.74</td>
+<td style="text-align:right">0.794</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-2-predi-es-do-modelo-baseline">Tabela 2 — Predições do modelo baseline</h3>
+<p>A Tabela 2 contém as predições fora da amostra para cada registro longitudinal. Ela apresenta valor real, valor previsto, resíduo, erro absoluto e classificação do sinal real e previsto. Essa tabela permite investigar casos em que o modelo acerta a tendência geral, mas erra a magnitude, e casos em que erra o próprio sentido físico da deformação.</p>
+<p>Arquivo de origem: <code>experimento_03_baseline_ridge/resultados/predicoes_baseline_ridge.csv</code></p>
+<p>A tabela completa possui <strong>1447 registros</strong> e <strong>9 colunas</strong>. Para manter a leitura do relatório viável, apresenta-se abaixo uma visualização parcial, mantendo o arquivo CSV completo na pasta de resultados.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">amostra_id</th>
+<th style="text-align:left">idade_label</th>
+<th style="text-align:right">idade_dias</th>
+<th style="text-align:right">epsilon_t</th>
+<th style="text-align:right">epsilon_previsto</th>
+<th style="text-align:right">residuo</th>
+<th style="text-align:right">erro_absoluto</th>
+<th style="text-align:left">sinal_real</th>
+<th style="text-align:left">sinal_previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">32.305</td>
+<td style="text-align:right">-32.305</td>
+<td style="text-align:right">32.305</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">138</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-88.521</td>
+<td style="text-align:right">88.521</td>
+<td style="text-align:right">88.521</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">41</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">38.203</td>
+<td style="text-align:right">-38.203</td>
+<td style="text-align:right">38.203</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">139</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">88.916</td>
+<td style="text-align:right">-88.916</td>
+<td style="text-align:right">88.916</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">140</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-91.485</td>
+<td style="text-align:right">91.485</td>
+<td style="text-align:right">91.485</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">40</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">88.916</td>
+<td style="text-align:right">-88.916</td>
+<td style="text-align:right">88.916</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">141</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">70.388</td>
+<td style="text-align:right">-70.388</td>
+<td style="text-align:right">70.388</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">137</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">28.276</td>
+<td style="text-align:right">-28.276</td>
+<td style="text-align:right">28.276</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">39</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-129.466</td>
+<td style="text-align:right">129.466</td>
+<td style="text-align:right">129.466</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">143</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">43.646</td>
+<td style="text-align:right">-43.646</td>
+<td style="text-align:right">43.646</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">66.696</td>
+<td style="text-align:right">-66.696</td>
+<td style="text-align:right">66.696</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">144</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-103.843</td>
+<td style="text-align:right">103.843</td>
+<td style="text-align:right">103.843</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">145</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">106.164</td>
+<td style="text-align:right">-106.164</td>
+<td style="text-align:right">106.164</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">37</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-74.512</td>
+<td style="text-align:right">74.512</td>
+<td style="text-align:right">74.512</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">146</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-60.599</td>
+<td style="text-align:right">60.599</td>
+<td style="text-align:right">60.599</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">142</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-108.743</td>
+<td style="text-align:right">108.743</td>
+<td style="text-align:right">108.743</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">42</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-77.575</td>
+<td style="text-align:right">77.575</td>
+<td style="text-align:right">77.575</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">136</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-110.012</td>
+<td style="text-align:right">110.012</td>
+<td style="text-align:right">110.012</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">43</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">48.468</td>
+<td style="text-align:right">-48.468</td>
+<td style="text-align:right">48.468</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">126</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-53.399</td>
+<td style="text-align:right">53.399</td>
+<td style="text-align:right">53.399</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">48</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-79.949</td>
+<td style="text-align:right">79.949</td>
+<td style="text-align:right">79.949</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">127</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">18.381</td>
+<td style="text-align:right">-18.381</td>
+<td style="text-align:right">18.381</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">128</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-108.644</td>
+<td style="text-align:right">108.644</td>
+<td style="text-align:right">108.644</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">47</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">60.28</td>
+<td style="text-align:right">-60.28</td>
+<td style="text-align:right">60.28</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">129</td>
+<td style="text-align:left">12 h</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">129.691</td>
+<td style="text-align:right">-129.691</td>
+<td style="text-align:right">129.691</td>
+<td style="text-align:left">estabilidade</td>
+<td style="text-align:left">expansao</td>
+</tr>
+<tr>
+<td style="text-align:right">106</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-430</td>
+<td style="text-align:right">-398.106</td>
+<td style="text-align:right">-31.894</td>
+<td style="text-align:right">31.894</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">59</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-460</td>
+<td style="text-align:right">-434.547</td>
+<td style="text-align:right">-25.453</td>
+<td style="text-align:right">25.453</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">168</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-390</td>
+<td style="text-align:right">-451.99</td>
+<td style="text-align:right">61.99</td>
+<td style="text-align:right">61.99</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-590</td>
+<td style="text-align:right">-444.076</td>
+<td style="text-align:right">-145.924</td>
+<td style="text-align:right">145.924</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">107</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-360</td>
+<td style="text-align:right">-341.469</td>
+<td style="text-align:right">-18.531</td>
+<td style="text-align:right">18.531</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">58</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-320</td>
+<td style="text-align:right">-373.751</td>
+<td style="text-align:right">53.751</td>
+<td style="text-align:right">53.751</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">167</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-260</td>
+<td style="text-align:right">-261.005</td>
+<td style="text-align:right">1.005</td>
+<td style="text-align:right">1.005</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">108</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-290</td>
+<td style="text-align:right">-248.764</td>
+<td style="text-align:right">-41.236</td>
+<td style="text-align:right">41.236</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">-281.263</td>
+<td style="text-align:right">-68.737</td>
+<td style="text-align:right">68.737</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+<tr>
+<td style="text-align:right">38</td>
+<td style="text-align:left">56 dias</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">-350</td>
+<td style="text-align:right">-288.252</td>
+<td style="text-align:right">-61.748</td>
+<td style="text-align:right">61.748</td>
+<td style="text-align:left">retracao</td>
+<td style="text-align:left">retracao</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Observação: o CSV completo correspondente permanece disponível na pasta de resultados do experimento.</p>
+</blockquote>
+<h2 id="rel-5-figura-gerada">5. Figura gerada</h2>
+<h3 id="rel-figura-1-real-versus-previsto-no-baseline-ridge">Figura 1 — Real versus previsto no baseline Ridge</h3>
+<p>A Figura 1 compara valores reais e previstos. Quanto mais próximos os pontos estiverem da linha de identidade, melhor a predição. A dispersão em torno da linha mostra o erro do baseline.</p>
+<p class="report-image"><img alt="Figura 1 — Real versus previsto no baseline Ridge" loading="lazy" src="../assets/img/experimento_03_baseline_ridge/real_vs_previsto_baseline.png"/></p>
+<h2 id="rel-6-interpreta-o-dos-resultados">6. Interpretação dos resultados</h2>
+<p>O baseline fornece uma referência interpretável para a sequência. Como modelo linear, ele tende a capturar tendências gerais, mas pode ter limitação diante de relações não lineares entre idade, aditivo, fibras, cura e composição.</p>
+<h2 id="rel-7-conclus-o-do-experimento">7. Conclusão do experimento</h2>
+<p>O Experimento 3 estabelece a referência inicial da modelagem. Os experimentos posteriores devem demonstrar se modelos não lineares e estratégias de seleção ou ajuste fino aumentam a capacidade preditiva para <code>epsilon_t</code>.</p>
+</div>
+</section><div class="exp-nav"><a class="btn secondary" href="experimento-02.html">← Experimento 02</a><a class="btn" href="experimento-04.html">Experimento 04 →</a></div></main><footer><div class="wrap"><p>Material complementar da pesquisa de mestrado em Engenharia Civil. Os resultados devem ser interpretados dentro do domínio representado pela base experimental.</p></div></footer><script src="../assets/js/main.js"></script></body></html>

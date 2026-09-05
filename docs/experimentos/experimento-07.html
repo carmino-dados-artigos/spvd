@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Repositório científico complementar da dissertação sobre predição da variação dimensional de concretos com macrofibras e aditivos compensadores de retração." name="description"/><title>Experimento 07 · Sistema Preditivo de Variação Dimensional</title><link href="../assets/css/style.css" rel="stylesheet"/></head><body><header class="top"><div class="wrap brand"><div><strong>Sistema Preditivo de Variação Dimensional</strong><span>Repositório científico complementar</span></div><button aria-label="Abrir menu" class="nav-toggle">☰</button></div><nav class="wrap nav"><a href="../index.html">Início</a><a href="../metodologia.html">Pesquisa</a><a href="../dados.html">Dados</a><a href="../experimentos/index.html">Experimentos</a><a href="../resultados.html">Resultados</a><a href="../prototipo.html">Protótipo</a><a href="../rastreabilidade.html">Rastreabilidade</a><a href="../downloads.html">Downloads</a></nav></header><main class="wrap"><div class="eyebrow">Experimento 07</div><h1>Engenharia e seleção de atributos</h1><p class="lead">Testar interações entre idade, água, cimento, DRY D1 e fibras e avaliar métodos de seleção.</p><div class="grid"><div class="card span-6"><h3>Resultado principal</h3><p>Extra Trees com variáveis básicas permaneceu superior às configurações com atributos derivados, com RMSE 86,232 µm/m e acurácia do sinal 0,884.</p></div><div class="card span-6"><h3>Decisão metodológica</h3><p>Não ampliar a dimensionalidade automaticamente; manter variáveis derivadas apenas quando houver ganho demonstrável.</p></div></div><h2>Evidência tabular</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>MAE</th><th>RMSE</th><th>R2</th><th>acuracia_sinal</th><th>modelo</th><th>MAE_cv_medio</th><th>MAE_cv_desvio</th><th>RMSE_cv_medio</th><th>RMSE_cv_desvio</th><th>R2_cv_medio</th><th>R2_cv_desvio</th><th>cenario_atributos</th></tr></thead><tbody><tr><td>48.440019879912754</td><td>86.23195418780527</td><td>0.7911076696661319</td><td>0.8838977194194886</td><td>ExtraTrees_variaveis_basicas</td><td>48.44605392274129</td><td>5.328860877540963</td><td>85.13593893940511</td><td>13.82008225163986</td><td>0.7923190805852203</td><td>0.05460698813440366</td><td>variaveis_basicas</td></tr><tr><td>49.29734132468929</td><td>89.36178460564743</td><td>0.775668786828511</td><td>0.8562543192812716</td><td>ExtraTrees_variaveis_derivadas</td><td>49.302617995387145</td><td>4.780681160218494</td><td>88.25522722999278</td><td>14.136724413252711</td><td>0.7768569343850134</td><td>0.058116699681582756</td><td>variaveis_derivadas</td></tr><tr><td>63.11232126043424</td><td>92.69443367817465</td><td>0.758624409481207</td><td>0.7975120939875605</td><td>ElasticNet_derivadas</td><td>63.119882876144096</td><td>6.4375002924785365</td><td>91.91441805692051</td><td>12.153172049570804</td><td>0.7601165571977334</td><td>0.047476100004516186</td><td>variaveis_derivadas</td></tr><tr><td>62.54508284883887</td><td>96.08032750595626</td><td>0.7406686696689615</td><td>0.796821008984105</td><td>RFE15_Ridge</td><td>62.55426990864373</td><td>7.134757158273368</td><td>94.82464438468189</td><td>15.639995139285745</td><td>0.7432391791014963</td><td>0.06590210713362883</td><td>variaveis_derivadas</td></tr><tr><td>63.16059650256423</td><td>96.15933292656446</td><td>0.7402420057495308</td><td>0.7940566689702834</td><td>Ridge_variaveis_basicas</td><td>63.167093035239986</td><td>5.997610566667288</td><td>95.08962212804221</td><td>14.453926654414484</td><td>0.7422034576018918</td><td>0.06088588596275289</td><td>variaveis_basicas</td></tr><tr><td>64.4913440819347</td><td>97.21615005229657</td><td>0.7345010091158806</td><td>0.7906012439530062</td><td>Lasso_derivadas</td><td>64.498914380972</td><td>5.432554379705127</td><td>96.22653689289727</td><td>14.00344558359594</td><td>0.7367828879702341</td><td>0.057760191321489046</td><td>variaveis_derivadas</td></tr><tr><td>65.11626772783418</td><td>97.46573422484204</td><td>0.7331360217853689</td><td>0.7843814789219073</td><td>Ridge_variaveis_derivadas</td><td>65.1225256973574</td><td>5.526025819781737</td><td>96.51288696598311</td><td>13.75612645697513</td><td>0.7351095835174016</td><td>0.05734637501336316</td><td>variaveis_derivadas</td></tr><tr><td>67.09140149819319</td><td>98.39968340323372</td><td>0.727997158714993</td><td>0.78852798894264</td><td>SelectKBest15_Ridge</td><td>67.09532657938797</td><td>6.711958444032609</td><td>97.85617487036397</td><td>10.438338263523717</td><td>0.7276223014052773</td><td>0.04916028658489503</td><td>variaveis_derivadas</td></tr></tbody></table></div><div class="figure"><img alt="Resultado gráfico do experimento 07" src="../assets/img/experimento_07_engenharia_selecao/comparacao_engenharia_selecao.png"/><div class="caption">Figura gerada pelo Experimento 07: comparacao_engenharia_selecao.png</div></div><h2>Rastreabilidade</h2><p>Este experimento sustenta diretamente a seção <strong>4.7</strong> dos resultados parciais da dissertação.</p><div class="btns"><a class="btn secondary" href="../downloads/src/experimento_07_engenharia_selecao/experimento_07.py">Ver script</a><a class="btn secondary" href="../downloads/resultados/experimento_07_engenharia_selecao/comparacao_engenharia_selecao.csv">Baixar tabela principal</a></div><section class="report-section" id="relatorio-detalhado">
+<div class="report-head">
+<div><div class="eyebrow">Resultados documentados</div><h2>Relatório detalhado do experimento</h2>
+<p class="lead">Conteúdo incorporado diretamente do relatório Markdown original do Experimento 07, preservando procedimentos, tabelas, resultados, interpretação e conclusão.</p></div>
+<div class="btns"><a class="btn secondary" href="../downloads/relatorios/experimentos/RELATORIO_experimento_07_engenharia_selecao.md">Baixar relatório .md</a></div>
+</div>
+<div class="report-content">
+<h2 id="rel-1-caracteriza-o-e-finalidade">1. Caracterização e finalidade</h2>
+<p>Este experimento avalia se a criação de variáveis derivadas e a aplicação de métodos de seleção de atributos melhoram a predição da variação dimensional longitudinal. A finalidade é testar se interações entre idade, água, cimento, DRY D1 e fibras aumentam o desempenho em relação às variáveis básicas.</p>
+<h2 id="rel-2-vari-vel-de-resposta">2. Variável de resposta</h2>
+<p>A variável de resposta permanece <code>epsilon_t</code>, com preservação do sinal. Portanto, o experimento continua alinhado à predição da variação dimensional, e não à predição de magnitude absoluta.</p>
+<h2 id="rel-3-vari-veis-utilizadas">3. Variáveis utilizadas</h2>
+<p>As variáveis básicas incluem relação a/c, consumos de cimento, água, DRY D1 e fibras, além de idade e variáveis categóricas. As variáveis derivadas criadas foram:</p>
+<table>
+<thead>
+<tr>
+<th>Variável derivada</th>
+<th>Interpretação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>water_cement_ratio_check</code></td>
+<td>razão água/cimento recalculada pelos consumos</td>
+</tr>
+<tr>
+<td><code>dry_d1_per_cement</code></td>
+<td>proporção de DRY D1 por cimento</td>
+</tr>
+<tr>
+<td><code>water_dry_interaction</code></td>
+<td>interação entre água e DRY D1</td>
+</tr>
+<tr>
+<td><code>wb_dry_interaction</code></td>
+<td>interação entre relação a/c e DRY D1</td>
+</tr>
+<tr>
+<td><code>fiber_total</code></td>
+<td>soma das fibras metálica, macrofibra PP e microfibra PP</td>
+</tr>
+<tr>
+<td><code>fiber_total_per_cement</code></td>
+<td>proporção de fibras totais por cimento</td>
+</tr>
+<tr>
+<td><code>water_fiber_interaction</code></td>
+<td>interação entre água e fibras totais</td>
+</tr>
+<tr>
+<td><code>dry_fiber_interaction</code></td>
+<td>interação entre DRY D1 e fibras totais</td>
+</tr>
+<tr>
+<td><code>wb_fiber_interaction</code></td>
+<td>interação entre relação a/c e fibras totais</td>
+</tr>
+<tr>
+<td><code>water_per_fiber_plus_one</code></td>
+<td>razão entre água e fibras totais, com ajuste contra divisão por zero</td>
+</tr>
+<tr>
+<td><code>cement_water_product</code></td>
+<td>produto entre cimento e água</td>
+</tr>
+<tr>
+<td><code>cement_dry_interaction</code></td>
+<td>interação entre cimento e DRY D1</td>
+</tr>
+<tr>
+<td><code>idade_dry_interaction</code></td>
+<td>interação entre idade e DRY D1</td>
+</tr>
+<tr>
+<td><code>idade_wb_interaction</code></td>
+<td>interação entre idade e relação a/c</td>
+</tr>
+<tr>
+<td><code>idade_fiber_interaction</code></td>
+<td>interação entre idade e fibras totais</td>
+</tr>
+<tr>
+<td><code>idade_water_interaction</code></td>
+<td>interação entre idade e consumo de água</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rel-4-modelos-avaliados">4. Modelos avaliados</h2>
+<p>Foram avaliados modelos com variáveis básicas, modelos com variáveis derivadas e modelos com seleção de atributos. A validação foi feita por grupo de amostra.</p>
+<h2 id="rel-5-tabela-de-resultados-gerada">5. Tabela de resultados gerada</h2>
+<h3 id="rel-tabela-1-compara-o-entre-engenharia-e-sele-o-de-atributos">Tabela 1 — Comparação entre engenharia e seleção de atributos</h3>
+<p>A Tabela 1 compara todos os cenários de atributos e seleção. O RMSE é usado como critério principal de ranqueamento; MAE, R² e acurácia do sinal complementam a interpretação.</p>
+<p>Arquivo de origem: <code>experimento_07_engenharia_selecao/resultados/comparacao_engenharia_selecao.csv</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">MAE</th>
+<th style="text-align:right">RMSE</th>
+<th style="text-align:right">R2</th>
+<th style="text-align:right">acuracia_sinal</th>
+<th style="text-align:left">modelo</th>
+<th style="text-align:right">MAE_cv_medio</th>
+<th style="text-align:right">MAE_cv_desvio</th>
+<th style="text-align:right">RMSE_cv_medio</th>
+<th style="text-align:right">RMSE_cv_desvio</th>
+<th style="text-align:right">R2_cv_medio</th>
+<th style="text-align:right">R2_cv_desvio</th>
+<th style="text-align:left">cenario_atributos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">48.44</td>
+<td style="text-align:right">86.232</td>
+<td style="text-align:right">0.791</td>
+<td style="text-align:right">0.884</td>
+<td style="text-align:left">ExtraTrees_variaveis_basicas</td>
+<td style="text-align:right">48.446</td>
+<td style="text-align:right">5.329</td>
+<td style="text-align:right">85.136</td>
+<td style="text-align:right">13.82</td>
+<td style="text-align:right">0.792</td>
+<td style="text-align:right">0.055</td>
+<td style="text-align:left">variaveis_basicas</td>
+</tr>
+<tr>
+<td style="text-align:right">49.297</td>
+<td style="text-align:right">89.362</td>
+<td style="text-align:right">0.776</td>
+<td style="text-align:right">0.856</td>
+<td style="text-align:left">ExtraTrees_variaveis_derivadas</td>
+<td style="text-align:right">49.303</td>
+<td style="text-align:right">4.781</td>
+<td style="text-align:right">88.255</td>
+<td style="text-align:right">14.137</td>
+<td style="text-align:right">0.777</td>
+<td style="text-align:right">0.058</td>
+<td style="text-align:left">variaveis_derivadas</td>
+</tr>
+<tr>
+<td style="text-align:right">63.112</td>
+<td style="text-align:right">92.694</td>
+<td style="text-align:right">0.759</td>
+<td style="text-align:right">0.798</td>
+<td style="text-align:left">ElasticNet_derivadas</td>
+<td style="text-align:right">63.12</td>
+<td style="text-align:right">6.438</td>
+<td style="text-align:right">91.914</td>
+<td style="text-align:right">12.153</td>
+<td style="text-align:right">0.76</td>
+<td style="text-align:right">0.047</td>
+<td style="text-align:left">variaveis_derivadas</td>
+</tr>
+<tr>
+<td style="text-align:right">62.545</td>
+<td style="text-align:right">96.08</td>
+<td style="text-align:right">0.741</td>
+<td style="text-align:right">0.797</td>
+<td style="text-align:left">RFE15_Ridge</td>
+<td style="text-align:right">62.554</td>
+<td style="text-align:right">7.135</td>
+<td style="text-align:right">94.825</td>
+<td style="text-align:right">15.64</td>
+<td style="text-align:right">0.743</td>
+<td style="text-align:right">0.066</td>
+<td style="text-align:left">variaveis_derivadas</td>
+</tr>
+<tr>
+<td style="text-align:right">63.161</td>
+<td style="text-align:right">96.159</td>
+<td style="text-align:right">0.74</td>
+<td style="text-align:right">0.794</td>
+<td style="text-align:left">Ridge_variaveis_basicas</td>
+<td style="text-align:right">63.167</td>
+<td style="text-align:right">5.998</td>
+<td style="text-align:right">95.09</td>
+<td style="text-align:right">14.454</td>
+<td style="text-align:right">0.742</td>
+<td style="text-align:right">0.061</td>
+<td style="text-align:left">variaveis_basicas</td>
+</tr>
+<tr>
+<td style="text-align:right">64.491</td>
+<td style="text-align:right">97.216</td>
+<td style="text-align:right">0.735</td>
+<td style="text-align:right">0.791</td>
+<td style="text-align:left">Lasso_derivadas</td>
+<td style="text-align:right">64.499</td>
+<td style="text-align:right">5.433</td>
+<td style="text-align:right">96.227</td>
+<td style="text-align:right">14.003</td>
+<td style="text-align:right">0.737</td>
+<td style="text-align:right">0.058</td>
+<td style="text-align:left">variaveis_derivadas</td>
+</tr>
+<tr>
+<td style="text-align:right">65.116</td>
+<td style="text-align:right">97.466</td>
+<td style="text-align:right">0.733</td>
+<td style="text-align:right">0.784</td>
+<td style="text-align:left">Ridge_variaveis_derivadas</td>
+<td style="text-align:right">65.123</td>
+<td style="text-align:right">5.526</td>
+<td style="text-align:right">96.513</td>
+<td style="text-align:right">13.756</td>
+<td style="text-align:right">0.735</td>
+<td style="text-align:right">0.057</td>
+<td style="text-align:left">variaveis_derivadas</td>
+</tr>
+<tr>
+<td style="text-align:right">67.091</td>
+<td style="text-align:right">98.4</td>
+<td style="text-align:right">0.728</td>
+<td style="text-align:right">0.789</td>
+<td style="text-align:left">SelectKBest15_Ridge</td>
+<td style="text-align:right">67.095</td>
+<td style="text-align:right">6.712</td>
+<td style="text-align:right">97.856</td>
+<td style="text-align:right">10.438</td>
+<td style="text-align:right">0.728</td>
+<td style="text-align:right">0.049</td>
+<td style="text-align:left">variaveis_derivadas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rel-6-vari-veis-selecionadas-pela-engenharia-e-sele-o-de-atributos">6. Variáveis selecionadas pela engenharia e seleção de atributos</h2>
+<h3 id="rel-tabela-2-vari-veis-selecionadas-pelo-selectkbest15">Tabela 2 — Variáveis selecionadas pelo SelectKBest15</h3>
+<p>O SelectKBest seleciona as variáveis com maior associação estatística individual com <code>epsilon_t</code>, usando <code>f_regression</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">ordem</th>
+<th style="text-align:left">variavel_selecionada</th>
+<th style="text-align:right">score_f</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:left">idade_water_interaction</td>
+<td style="text-align:right">1525.85</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:left">idade_wb_interaction</td>
+<td style="text-align:right">1489.45</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:left">idade_dias</td>
+<td style="text-align:right">1476.72</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:left">idade_horas</td>
+<td style="text-align:right">1476.72</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:left">idade_label_56 dias</td>
+<td style="text-align:right">721.666</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:left">dry_d1_per_cement</td>
+<td style="text-align:right">381.005</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:left">dry_d1</td>
+<td style="text-align:right">380.563</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:left">wb_dry_interaction</td>
+<td style="text-align:right">378.225</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td style="text-align:left">water_dry_interaction</td>
+<td style="text-align:right">376.774</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td style="text-align:left">cement_dry_interaction</td>
+<td style="text-align:right">374.151</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td style="text-align:left">idade_label_28 dias</td>
+<td style="text-align:right">129.674</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td style="text-align:left">idade_fiber_interaction</td>
+<td style="text-align:right">126.869</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td style="text-align:left">idade_label_3 dias</td>
+<td style="text-align:right">88.933</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td style="text-align:left">dry_fiber_interaction</td>
+<td style="text-align:right">83.326</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td style="text-align:left">idade_label_7 dias</td>
+<td style="text-align:right">82.119</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rel-tabela-3-vari-veis-selecionadas-pelo-rfe15-ridge">Tabela 3 — Variáveis selecionadas pelo RFE15 + Ridge</h3>
+<p>O RFE seleciona variáveis de forma recursiva, considerando o comportamento do modelo Ridge. A tabela apresenta as variáveis selecionadas e o impacto absoluto dos coeficientes.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">ordem</th>
+<th style="text-align:left">variavel_selecionada</th>
+<th style="text-align:right">coeficiente_ridge</th>
+<th style="text-align:right">impacto_absoluto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:left">cement_CP II F 32</td>
+<td style="text-align:right">207.174</td>
+<td style="text-align:right">207.174</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:left">curing_56 dias ar 50% umidade</td>
+<td style="text-align:right">-190.73</td>
+<td style="text-align:right">190.73</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:left">idade_water_interaction</td>
+<td style="text-align:right">-164.199</td>
+<td style="text-align:right">164.199</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:left">water_fiber_interaction</td>
+<td style="text-align:right">130.561</td>
+<td style="text-align:right">130.561</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:left">fiber_total</td>
+<td style="text-align:right">-128.123</td>
+<td style="text-align:right">128.123</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:left">idade_label_56 dias</td>
+<td style="text-align:right">109.166</td>
+<td style="text-align:right">109.166</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:left">local_ensaio_Campo</td>
+<td style="text-align:right">-105.999</td>
+<td style="text-align:right">105.999</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:left">estado_ES</td>
+<td style="text-align:right">-95.681</td>
+<td style="text-align:right">95.681</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td style="text-align:left">wb_dry_interaction</td>
+<td style="text-align:right">83.24</td>
+<td style="text-align:right">83.24</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td style="text-align:left">estado_RS</td>
+<td style="text-align:right">63.563</td>
+<td style="text-align:right">63.563</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td style="text-align:left">cement_CP II Z 32</td>
+<td style="text-align:right">63.563</td>
+<td style="text-align:right">63.563</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td style="text-align:left">idade_label_7 dias</td>
+<td style="text-align:right">54.85</td>
+<td style="text-align:right">54.85</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td style="text-align:left">cement_CP II</td>
+<td style="text-align:right">-52.184</td>
+<td style="text-align:right">52.184</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td style="text-align:left">local_ensaio_Laboratório</td>
+<td style="text-align:right">51.488</td>
+<td style="text-align:right">51.488</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td style="text-align:left">local_ensaio_Não informado</td>
+<td style="text-align:right">50.859</td>
+<td style="text-align:right">50.859</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rel-7-figura-gerada">7. Figura gerada</h2>
+<h3 id="rel-figura-1-compara-o-dos-cen-rios-de-engenharia-e-sele-o">Figura 1 — Comparação dos cenários de engenharia e seleção</h3>
+<p>A Figura 1 mostra o RMSE de cada cenário. Como RMSE é erro, a menor barra representa o melhor desempenho.</p>
+<p class="report-image"><img alt="Figura 1 — Comparação dos cenários de engenharia e seleção" loading="lazy" src="../assets/img/experimento_07_engenharia_selecao/comparacao_engenharia_selecao.png"/></p>
+<h2 id="rel-8-interpreta-o-dos-resultados">8. Interpretação dos resultados</h2>
+<p>O melhor desempenho foi obtido por <code>ExtraTrees_variaveis_basicas</code>, com RMSE de 86.232 µm/m, MAE de 48.440 µm/m, R² de 0.791 e acurácia do sinal de 0.884.</p>
+<p>O resultado é tecnicamente relevante porque indica que, nesta base, a engenharia de atributos não superou o modelo Extra Trees com variáveis básicas. Isso não invalida as variáveis derivadas; mostra apenas que o modelo de árvores conseguiu capturar relações não lineares relevantes sem necessidade de aumentar a dimensionalidade.</p>
+<p>As variáveis selecionadas pelos métodos estatísticos reforçam a importância da idade e das interações longitudinais, sobretudo <code>idade_water_interaction</code>, <code>idade_wb_interaction</code>, <code>idade_dias</code>, <code>idade_horas</code> e variáveis associadas ao DRY D1.</p>
+<h2 id="rel-9-conclus-o-do-experimento">9. Conclusão do experimento</h2>
+<p>O Experimento 7 mostra que a engenharia de atributos e a seleção de variáveis foram metodologicamente úteis, mas não produziram o melhor desempenho global. A configuração mais forte permaneceu com Extra Trees e variáveis básicas.</p>
+</div>
+</section><div class="exp-nav"><a class="btn secondary" href="experimento-06.html">← Experimento 06</a><a class="btn" href="experimento-08.html">Experimento 08 →</a></div></main><footer><div class="wrap"><p>Material complementar da pesquisa de mestrado em Engenharia Civil. Os resultados devem ser interpretados dentro do domínio representado pela base experimental.</p></div></footer><script src="../assets/js/main.js"></script></body></html>
